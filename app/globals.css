@@ -9,7 +9,7 @@ header .w{display:flex;align-items:center;justify-content:space-between;height:6
 nav{display:flex;gap:24px;font-size:14px;font-weight:500}nav a{color:var(--ink);text-decoration:none}nav a:hover{color:var(--p)}
 .btn{display:inline-block;background:var(--p);color:#fff;border:0;border-radius:99px;padding:12px 24px;font:700 14px 'Plus Jakarta Sans',sans-serif;cursor:pointer;text-decoration:none;box-shadow:0 8px 20px -8px var(--p)}
 .btn.o{background:none;color:var(--d);border:1px solid var(--d);box-shadow:none}
-.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:44px;padding:72px 0;align-items:center}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:44px;padding:72px 20px;align-items:center}.hero .btn{margin:0 6px 10px 0}
 h1{font-size:clamp(34px,5.6vw,58px);line-height:1.06;margin:16px 0;letter-spacing:-.03em;color:var(--d)}
 h1 em,h2 em{color:var(--p);font-style:normal}
 h2{font-size:clamp(27px,4vw,40px);letter-spacing:-.02em;margin:6px 0 14px;color:var(--d);line-height:1.15}
@@ -45,4 +45,11 @@ label{font-size:12px;font-weight:700}textarea{min-height:100px;resize:vertical}.
 footer{background:#02193d;color:#a9bdd9;padding:44px 0 26px;font-size:14px}footer a{color:#a9bdd9;text-decoration:none}footer a:hover{color:#fff}
 .fg{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:30px}.fg h4{color:#fff;margin:0 0 12px}.fg a{display:block;padding:3px 0}.fg img{height:60px;margin-bottom:12px;background:#fff;border-radius:12px;padding:8px}
 .cp{border-top:1px solid rgba(255,255,255,.12);margin-top:28px;padding-top:18px}
-@media(max-width:820px){.hero{grid-template-columns:1fr;padding:40px 0}nav{display:none}.fg{grid-template-columns:1fr}.wa span{display:none}}
+@media(max-width:820px){
+.hero{grid-template-columns:1fr;padding:32px 20px 40px;gap:28px}
+header .w{flex-wrap:wrap;height:auto;padding-top:10px;padding-bottom:8px;row-gap:6px}
+.brand img{height:34px}.brand b{font-size:19px}
+nav{display:flex;order:3;width:100%;overflow-x:auto;gap:20px;white-space:nowrap;padding:4px 0 6px;scrollbar-width:none}nav::-webkit-scrollbar{display:none}
+.btn{padding:11px 18px}.stats{gap:20px 26px}.stats b{font-size:26px}
+section{padding:44px 0}.fg{grid-template-columns:1fr}.wa{padding:12px 14px}.wa span{display:none}
+form.c{padding:20px}}
