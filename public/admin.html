@@ -61,7 +61,7 @@ function show(){var M=document.getElementById('main');M.innerHTML='';document.ge
 function inbox(M){M.textContent='Loading...';fetch('/api/admin/messages').then(function(r){return r.json()}).then(function(L){M.innerHTML='';if(!L.length)M.textContent='No messages yet.';
  L.forEach(function(m){var d=el('div',{className:'m'+(m.read?'':' un')});d.appendChild(el('b',{textContent:m.name+' · '+m.service}));
   d.appendChild(el('div',{textContent:m.email}));d.appendChild(el('small',{textContent:new Date(m.ts*1000).toLocaleString()}));d.appendChild(el('p',{textContent:m.message,style:'white-space:pre-wrap'}));
-  function act(a){return fetch('/api/admin/messages',{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:m.id,action:a})}).then(function(){inbox(M)})}
+  function act(a){return fetch('/api/admin/messages',{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:m.id,action:a === 'delete' ? 'delete' : 'toggle-read'})}).then(function(){inbox(M)})}
   var r=el('button',{className:'s',textContent:m.read?'Mark unread':'Mark read'});r.onclick=function(){act('read')};
   var x=el('button',{className:'s x',textContent:'Delete'});x.onclick=function(){if(confirm('Delete message?'))act('delete')};
   var rp=el('a',{className:'s',textContent:'Reply by email',href:'mailto:'+m.email,style:'text-decoration:none'});d.appendChild(r);d.appendChild(x);d.appendChild(rp);M.appendChild(d)})})}

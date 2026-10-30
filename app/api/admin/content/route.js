@@ -9,6 +9,7 @@ export async function GET() {
   return NextResponse.json(await getContent());
 }
 export async function PUT(req) {
+  if (Number(req.headers.get('content-length') || 0) > 1_000_000) return NextResponse.json({ ok: false, error: 'Content is too large.' }, { status: 413 });
   if (!isAuthed()) return NextResponse.json({ ok: false, error: 'Not logged in' }, { status: 401 });
   let d; try { d = await req.json(); } catch (e) { return NextResponse.json({ ok: false, error: 'Bad JSON' }, { status: 400 }); }
   if (!d || !d.settings || !d.theme || !d.hero || !d.services || !d.contact || !d.nav) return NextResponse.json({ ok: false, error: 'Invalid data' }, { status: 400 });

@@ -5,6 +5,7 @@ export const dynamic = 'force-dynamic';
 
 const cut = (s, n) => String(s || '').trim().slice(0, n);
 export async function POST(req) {
+  if (Number(req.headers.get('content-length') || 0) > 12_000) return NextResponse.json({ ok: false, message: 'Message is too large.' }, { status: 413 });
   let b; try { b = await req.json(); } catch (e) { return NextResponse.json({ ok: false, message: 'Invalid request.' }, { status: 400 }); }
   if (b.website) return NextResponse.json({ ok: true, message: 'Thank you!' });
   const name = cut(b.name, 100), email = cut(b.email, 150), message = cut(b.message, 3000), service = cut(b.service, 100);

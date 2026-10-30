@@ -9,8 +9,15 @@ export async function POST(req) {
   const ip = (req.headers.get('x-forwarded-for') || 'x').split(',')[0].trim();
   try {
     const r = redis();
-    if (r) { const k = 'rl:login:' + ip; const n = await r.incr(k); if (n === 1) await r.expire(k, 900); if (n > 8) return NextResponse.json({ ok: false, error: 'Too many attempts. Try again in 15 minutes.' }, { status: 429 }); }
-  } catch (e) {}
+    if (!r) return NextResponse.json({ ok: false, error: 'Admin login is unavailable until Upstash Redis is connected.' }, { status: 503 });
+    const trustedIp = req.headers.get('x-real-ip') || ip;
+    const k = 'rl:login:' + trustedIp;
+    const n = await r.incr(k);
+    if (n === 1) await r.expire(k, 900);
+    if (n > 8) return NextResponse.json({ ok: false, error: 'Too many attempts. Try again in 15 minutes.' }, { status: 429 });
+  } catch (e) {
+    return NextResponse.json({ ok: false, error: 'Admin login is temporarily unavailable. Please try again later.' }, { status: 503 });
+  }
   let b = {}; try { b = await req.json(); } catch (e) {}
   const okU = sameStr(b.user || '', u), okP = sameStr(b.password || '', p);
   if (!(okU && okP)) return NextResponse.json({ ok: false, error: 'Wrong username or password.' }, { status: 401 });

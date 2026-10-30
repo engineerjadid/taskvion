@@ -15,3 +15,9 @@
 
 Before step 3-5 the public site already shows default content, but admin save/upload will not work.
 Custom domain: Project > Settings > Domains.
+
+## SEO configuration
+- Set `NEXT_PUBLIC_SITE_URL` in Vercel Project Settings → Environment Variables to your canonical production URL (for example `https://www.yourdomain.com`). If unset, the site uses `https://taskvion.vercel.app` as the canonical URL (including for preview deployments).
+- The App Router automatically serves `/robots.txt` and `/sitemap.xml`.
+- After deploying, submit `https://YOUR-DOMAIN/sitemap.xml` in Google Search Console.
+- Replace the example contact email and WhatsApp number in Admin → Settings before publishing campaigns.
