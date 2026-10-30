@@ -1,0 +1,115 @@
+{
+ "settings": {
+  "brandName": "TaskVion",
+  "brandSub": "IT Solutions",
+  "logoIcon": "/logo-icon.png",
+  "logoFull": "/logo-full.png",
+  "favicon": "/favicon.png",
+  "siteTitle": "TaskVion IT Solutions | Property Preservation Back Office & BPO",
+  "metaDescription": "Work order processing, bid estimation, vendor management and invoicing for property preservation vendors. Technology, BPO and property preservation support.",
+  "email": "contact@yourdomain.com",
+  "whatsapp": "8801XXXXXXXXX",
+  "whatsappLabel": "Need urgent response? Chat with us",
+  "phone": "",
+  "address": "Dhaka, Bangladesh",
+  "footerText": "Work orders, bids, vendor management and invoicing for property preservation vendors.",
+  "copyright": "TaskVion IT Solutions. All rights reserved.",
+  "linkedin": "",
+  "facebook": ""
+ },
+ "theme": { "primary": "#0080fd", "dark": "#03265a", "background": "#f4f8ff", "text": "#0a1a33" },
+ "nav": [
+  {"label": "Services", "href": "#services"},
+  {"label": "How it works", "href": "#how"},
+  {"label": "Pricing", "href": "#pricing"},
+  {"label": "FAQ", "href": "#faq"},
+  {"label": "Contact", "href": "#contact"}
+ ],
+ "navButton": {"label": "Get started", "href": "#contact"},
+ "hero": {
+  "badge": "Technology · BPO · Property Preservation Support",
+  "title": "Property preservation work orders, processed",
+  "titleAccent": "right the first time.",
+  "subtitle": "We handle your work orders, bids, vendor paperwork and invoicing, so you can focus on the field and not the portal.",
+  "button1": {"label": "Send us your work orders", "href": "#contact"},
+  "button2": {"label": "Explore services", "href": "#services"},
+  "stats": [
+   {"value": "24/7", "label": "Support"},
+   {"value": "QC", "label": "Review on every order"},
+   {"value": "< 1 hr", "label": "Typical turnaround"}
+  ],
+  "panelShow": true,
+  "panel": {
+   "tag": "EXAMPLE WORK ORDER",
+   "title": "Processed and submitted",
+   "items": [
+    {"title": "Order received", "desc": "Scope and due date confirmed"},
+    {"title": "Allowables and scope checked", "desc": "Matched to client guidelines"},
+    {"title": "Photos and report QC reviewed", "desc": "Reviewed before it goes out"}
+   ],
+   "footerLeft": "All checks passed",
+   "footerRight": "On time"
+  }
+ },
+ "platforms": {"show": true, "items": ["PPW", "Pruvan", "MCS", "ServiceLink", "Cyprexx", "Altisource", "ServiceBench"]},
+ "services": {
+  "show": true, "label": "SERVICES", "title": "Everything your back office needs,", "titleAccent": "handled.",
+  "subtitle": "Not generic admin help. A dedicated team that knows REO platforms, allowables, scorecards and what your clients expect.",
+  "items": [
+   {"title": "Work order processing", "desc": "End-to-end management from intake to platform submission, with every deadline tracked.", "points": ["Intake and data entry", "Platform submission", "Deadline tracking"]},
+   {"title": "Bid estimation", "desc": "Accurate, competitive bids submitted promptly, so slow turnaround never costs you a job.", "points": ["Accurate pricing", "Fast submission"]},
+   {"title": "Vendor management", "desc": "Keep your sub-contractor network compliant and efficient.", "points": ["Onboarding", "Document tracking", "Performance checks"]},
+   {"title": "Invoicing and billing", "desc": "Invoices submitted accurately and on time, so cash flow stays steady.", "points": ["Accurate submissions", "On-time billing", "Organized receivables"]},
+   {"title": "Web and software development", "desc": "Websites, dashboards and custom tools for your business.", "points": ["Business websites", "Admin panels", "Automation"]},
+   {"title": "BPO and data entry", "desc": "Reliable remote support for repetitive back-office tasks.", "points": ["Data entry", "Document processing", "Customer support"]}
+  ]
+ },
+ "steps": {
+  "show": true, "label": "HOW IT WORKS", "title": "Simple to start.", "titleAccent": "Easy to scale.",
+  "items": [
+   {"title": "Send us the work order", "desc": "Assign orders the way you already do. We confirm scope and timeline."},
+   {"title": "We process it on your platform", "desc": "Our team works in PPW, Pruvan, MCS and more, with no training needed."},
+   {"title": "QC review before it goes out", "desc": "Every work order, report, bid and invoice is checked first."},
+   {"title": "You get faster approvals", "desc": "Fewer errors and deductions, with your deadlines kept."}
+  ]
+ },
+ "why": {
+  "show": true, "label": "WHY US", "title": "Processing you can rely on.", "titleAccent": "Every single time.",
+  "items": [
+   {"title": "Industry-specific expertise", "desc": "We know REO platforms, allowables, scorecards and compliance requirements."},
+   {"title": "Accurate, on-time submissions", "desc": "Every work order, report, bid and invoice is reviewed before it goes out."},
+   {"title": "A true back-office partner", "desc": "Proactive and communicative, we work as an extension of your team."}
+  ]
+ },
+ "pricing": {
+  "show": true, "label": "PRICING", "title": "Simple pricing,", "titleAccent": "built around your volume.",
+  "subtitle": "Edit these plans from the admin panel. Replace the placeholder prices with your own.",
+  "items": [
+   {"name": "Starter", "price": "Contact us", "desc": "For vendors with a small monthly volume.", "features": ["Work order processing", "Photo and report QC", "Email support"], "featured": false, "buttonLabel": "Get a quote"},
+   {"name": "Growth", "price": "Contact us", "desc": "For growing vendors who want full back-office coverage.", "features": ["Everything in Starter", "Bids and invoicing", "Vendor management", "24/7 support"], "featured": true, "buttonLabel": "Get a quote"},
+   {"name": "Custom", "price": "Let's talk", "desc": "For larger teams and special workflows.", "features": ["Dedicated team", "Custom reporting", "Priority turnaround"], "featured": false, "buttonLabel": "Talk to us"}
+  ]
+ },
+ "testimonials": {"show": false, "label": "CLIENT REVIEWS", "title": "Vendors who stopped", "titleAccent": "chasing paperwork.", "items": []},
+ "faq": {
+  "show": true, "label": "FAQ", "title": "Questions,", "titleAccent": "answered.",
+  "items": [
+   {"q": "What is property preservation work order processing?", "a": "It is the back-office work that keeps preservation jobs moving: receiving work orders, updating client platforms, submitting photos and reports, tracking deadlines, and preparing bids and invoices."},
+   {"q": "Which platforms do you support?", "a": "PPW, Pruvan, MCS and more. Tell us your platform and we will confirm."},
+   {"q": "How fast is your turnaround?", "a": "Typically under one hour for standard work orders."},
+   {"q": "How much does it cost?", "a": "It depends on your volume and services. Send us a message for a quote."},
+   {"q": "How do I get started?", "a": "Fill in the form below with your platforms and volume, and we will start on your work orders right away."}
+  ]
+ },
+ "contact": {
+  "label": "GET STARTED", "title": "Ready to hand off the", "titleAccent": "paperwork?",
+  "subtitle": "Tell us your platforms and volume. We can start on your work orders right away.",
+  "buttonLabel": "Submit",
+  "successMessage": "Thank you! We received your message and will reply shortly.",
+  "options": ["Work order processing", "Bid estimation", "Vendor management", "Invoicing and billing", "Web and software development", "BPO and data entry", "Other"]
+ },
+ "_templates": {
+  "testimonials": {"name": "", "role": "", "text": ""},
+  "platforms": "", "points": "", "features": "", "options": ""
+ }
+}

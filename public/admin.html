@@ -1,0 +1,59 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Admin Panel</title>
+<style>body{font-family:system-ui,sans-serif;background:#03265a;display:grid;place-items:center;min-height:100vh;margin:0}form{background:#fff;padding:32px;border-radius:18px;width:min(380px,92vw);display:grid;gap:12px}h1{margin:0;font-size:22px;color:#03265a}p{margin:0;color:#51627d;font-size:14px}input{padding:12px;border:1px solid #cdd9ea;border-radius:10px;font-size:15px}button{background:#0080fd;color:#fff;border:0;border-radius:10px;padding:13px;font-weight:700;font-size:15px;cursor:pointer}.er{color:#c0392b;font-size:14px}
+#login{position:fixed;inset:0;background:#03265a;display:none;place-items:center;z-index:50}#login form{background:#fff;padding:30px;border-radius:18px;width:min(380px,92vw);display:grid;gap:12px}#login h1{margin:0;font-size:22px;color:#03265a}#login input{padding:12px;border:1px solid #cdd9ea;border-radius:10px;font-size:15px}#le{color:#c0392b;font-size:14px}
+</style></head><body>
+<div id="login"><form id="lf"><h1>Admin login</h1><input id="lu" placeholder="Username" autocomplete="username" required><input id="lp" type="password" placeholder="Password" autocomplete="current-password" required><button class="b" style="padding:13px">Sign in</button><div id="le"></div></form></div>
+<div class="top"><b>⚙ Website Admin</b><div><a href="/" target="_blank">View site ↗</a><a href="#" id="lo">Logout</a></div></div>
+<div class="tabs" id="tabs"></div><div id="main"></div>
+<div class="bar" id="bar"><button class="b" id="save">Save all changes</button><span id="toast"></span></div>
+<script>
+function start(DATA){
+var TPL=DATA._templates||{};
+var ICONS=/^(logoicon|logofull|favicon|image|photo|logo)/i;
+function nice(k){return String(k).replace(/([A-Z])/g,' $1').replace(/_/g,' ')}
+function el(t,p,c){var e=document.createElement(t);if(p)for(var k in p)e[k]=p[k];(c||[]).forEach(function(x){e.appendChild(x)});return e}
+function blank(v){if(Array.isArray(v))return[];if(v&&typeof v==='object'){var o={};for(var k in v)o[k]=blank(v[k]);return o}if(typeof v==='boolean')return false;return typeof v==='number'?0:''}
+function field(obj,key,label){
+ var v=obj[key],w=el('div',{className:'f'});if(label!==false)w.appendChild(el('label',{textContent:nice(key)}));
+ if(typeof v==='boolean'){var c=el('input',{type:'checkbox',checked:v});c.onchange=function(){obj[key]=c.checked};var l=w.querySelector('label');if(l){l.style.display='inline';l.style.marginRight='8px'};w.insertBefore(c,w.firstChild);if(l)w.appendChild(l);return w}
+ if(Array.isArray(v)){
+  var isStr=v.length?typeof v[0]==='string':(TPL[key]===''||typeof TPL[key]==='string');
+  if(isStr){var ta=el('textarea',{value:v.join('\n')});ta.oninput=function(){obj[key]=ta.value.split('\n').map(function(s){return s.trim()}).filter(Boolean)};w.appendChild(ta);w.appendChild(el('div',{className:'help',textContent:'One item per line'}));return w}
+  var box=el('div');w.appendChild(box);
+  (function draw(){box.innerHTML='';v.forEach(function(it,i){
+   var rp=el('div',{className:'rp'}),h=el('div',{className:'rh'},[el('span',{textContent:'#'+(i+1)})]),bt=el('span');
+   [['↑',-1],['↓',1]].forEach(function(d){var b=el('button',{className:'s',textContent:d[0],type:'button'});b.onclick=function(){var j=i+d[1];if(j<0||j>=v.length)return;var t=v[i];v[i]=v[j];v[j]=t;draw()};bt.appendChild(b)});
+   var rm=el('button',{className:'s x',textContent:'Remove',type:'button'});rm.onclick=function(){if(confirm('Remove this item?')){v.splice(i,1);draw()}};bt.appendChild(rm);h.appendChild(bt);rp.appendChild(h);
+   if(it&&typeof it==='object')Object.keys(it).forEach(function(k){rp.appendChild(field(it,k))});box.appendChild(rp)});
+   var add=el('button',{className:'b',textContent:'+ Add item',type:'button'});add.onclick=function(){var t=v.length?blank(v[0]):(TPL[key]!==undefined?JSON.parse(JSON.stringify(TPL[key])):'');v.push(t);draw()};box.appendChild(add)})();
+  return w}
+ if(v&&typeof v==='object'){var fs=el('fieldset',null,[el('legend',{textContent:nice(key)})]);Object.keys(v).forEach(function(k){fs.appendChild(field(v,k))});return fs}
+ if(typeof v==='number'){var n=el('input',{type:'number',value:v});n.oninput=function(){obj[key]=Number(n.value)};w.appendChild(n);return w}
+ if(/color|^(primary|dark|background|text)$/i.test(key)&&/^#[0-9a-f]{6}$/i.test(v)){var cp=el('input',{type:'color',value:v}),tx=el('input',{type:'text',value:v,style:'width:120px;margin-left:8px'});cp.oninput=function(){obj[key]=cp.value;tx.value=cp.value};tx.oninput=function(){obj[key]=tx.value;if(/^#[0-9a-f]{6}$/i.test(tx.value))cp.value=tx.value};w.appendChild(el('div',{className:'up'},[cp,tx]));return w}
+ if(ICONS.test(key)){var ip=el('input',{type:'text',value:v}),img=el('img',{src:v}),fi=el('input',{type:'file',accept:'image/*'});img.onerror=function(){img.style.display='none'};ip.oninput=function(){obj[key]=ip.value;img.src=ip.value;img.style.display=''};
+  fi.onchange=function(){var fd=new FormData();fd.append('file',fi.files[0]);toast('Uploading...');fetch('/api/admin/upload',{method:'POST',body:fd}).then(function(r){return r.json()}).then(function(j){if(j.ok){obj[key]=j.path;ip.value=j.path;img.src=j.path;img.style.display='';toast('Uploaded. Click Save all changes.')}else toast(j.error,1)})};
+  w.appendChild(el('div',{className:'up'},[img,ip]));w.appendChild(fi);return w}
+ var long=(typeof v==='string'&&(v.length>70||/desc|subtitle|text|message|answer|^a$|footer/i.test(key)));
+ var inp=long?el('textarea',{value:v}):el('input',{type:'text',value:v});inp.oninput=function(){obj[key]=inp.value};w.appendChild(inp);return w}
+function toast(m,err){var t=document.getElementById('toast');t.textContent=m;t.style.color=err?'#c0392b':'#0a8a4a'}
+var keys=Object.keys(DATA).filter(function(k){return k[0]!=='_'}),cur=keys[0];
+function tabs(){var T=document.getElementById('tabs');T.innerHTML='';keys.concat(['messages','account']).forEach(function(k){var b=el('button',{className:'tab'+(k===cur?' on':''),textContent:k==='messages'?'📩 Messages':k==='account'?'🔒 Account':nice(k)});b.onclick=function(){cur=k;tabs();show()};T.appendChild(b)})}
+function show(){var M=document.getElementById('main');M.innerHTML='';document.getElementById('bar').style.display=(cur==='messages'||cur==='account')?'none':'flex';
+ if(cur==='messages')return inbox(M);if(cur==='account')return account(M);
+ var v=DATA[cur];if(Array.isArray(v)){var h={};h[cur]=v;M.appendChild(field(h,cur,false))}else Object.keys(v).forEach(function(k){M.appendChild(field(v,k))})}
+function inbox(M){M.textContent='Loading...';fetch('/api/admin/messages').then(function(r){return r.json()}).then(function(L){M.innerHTML='';if(!L.length)M.textContent='No messages yet.';
+ L.forEach(function(m){var d=el('div',{className:'m'+(m.read?'':' un')});d.appendChild(el('b',{textContent:m.name+' · '+m.service}));
+  d.appendChild(el('div',{textContent:m.email}));d.appendChild(el('small',{textContent:new Date(m.ts*1000).toLocaleString()}));d.appendChild(el('p',{textContent:m.message,style:'white-space:pre-wrap'}));
+  function act(a){return fetch('/api/admin/messages',{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:m.id,action:a})}).then(function(){inbox(M)})}
+  var r=el('button',{className:'s',textContent:m.read?'Mark unread':'Mark read'});r.onclick=function(){act('read')};
+  var x=el('button',{className:'s x',textContent:'Delete'});x.onclick=function(){if(confirm('Delete message?'))act('delete')};
+  var rp=el('a',{className:'s',textContent:'Reply by email',href:'mailto:'+m.email,style:'text-decoration:none'});d.appendChild(r);d.appendChild(x);d.appendChild(rp);M.appendChild(d)})})}
+function account(M){M.appendChild(el('fieldset',null,[el('legend',{textContent:'Account'}),el('p',{textContent:'Username and password are set in Vercel > Project > Settings > Environment Variables (ADMIN_USER, ADMIN_PASSWORD). Change them there, then Redeploy.'})]))}
+document.getElementById('save').onclick=function(){toast('Saving...');fetch('/api/admin/content',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(DATA)}).then(function(r){return r.json()}).then(function(j){j.ok?toast('Saved ✓ Website updated'):toast(j.error,1)}).catch(function(){toast('Save failed',1)})};
+tabs();show();
+}
+function boot(){fetch('/api/admin/content').then(function(r){if(r.status===401){document.getElementById('login').style.display='grid';return null}return r.json()}).then(function(d){if(d){document.getElementById('login').style.display='none';start(d)}})}
+document.getElementById('lf').onsubmit=function(e){e.preventDefault();fetch('/api/admin/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({user:document.getElementById('lu').value,password:document.getElementById('lp').value})}).then(function(r){return r.json()}).then(function(j){if(j.ok)boot();else document.getElementById('le').textContent=j.error})};
+document.getElementById('lo').onclick=function(e){e.preventDefault();fetch('/api/admin/logout',{method:'POST'}).then(function(){location.reload()})};
+boot();
+</script></body></html>
