@@ -133,6 +133,7 @@ export default async function Home() {
             {s.phone ? <a href={'tel:' + s.phone}>{s.phone}</a> : null}
             {s.linkedin ? <a href={href(s.linkedin)} target="_blank" rel="noopener noreferrer">LinkedIn</a> : null}
             {s.facebook ? <a href={href(s.facebook)} target="_blank" rel="noopener noreferrer">Facebook</a> : null}
+            {c.privacy && c.privacy.show ? <a href="/privacy">Privacy Policy</a> : null}
           </div>
         </div>
         <div className="cp">© {new Date().getFullYear()} {s.copyright}</div>
