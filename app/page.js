@@ -57,7 +57,11 @@ export default async function Home() {
         </div>
 
         {c.platforms && c.platforms.show && arr(c.platforms.items).length ? (
-          <div className="plat"><div className="w">{c.platforms.items.map((x, i) => <b key={i}>{x}</b>)}</div></div>
+          <div className="plat"><div className="marq"><div className="track">
+            {[0, 1].map((n) => (
+              <div key={n} aria-hidden={n === 1}>{[0, 1, 2].map((r) => c.platforms.items.map((x, i) => <b key={r + '-' + i}>{x}</b>))}</div>
+            ))}
+          </div></div></div>
         ) : null}
 
         {c.services && c.services.show ? (
