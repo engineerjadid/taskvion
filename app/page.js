@@ -1,5 +1,6 @@
 import { getContent } from '../lib/store';
 import ContactForm from '../components/ContactForm';
+import Header from '../components/Header';
 
 export const dynamic = 'force-dynamic';
 const href = (u) => (/^\s*javascript:/i.test(u || '') ? '#' : u || '#');
@@ -25,14 +26,13 @@ export default async function Home() {
   const pn = h.panel || {};
   return (
     <>
-      <header><div className="w">
-        <a className="brand" href="#top">
-          {s.logoIcon ? <img src={s.logoIcon} alt="" /> : null}
-          <span><b>{s.brandName}</b><small>{String(s.brandSub || '').toUpperCase()}</small></span>
-        </a>
-        <nav>{arr(c.nav).map((n, i) => <a key={i} href={href(n.href)}>{n.label}</a>)}</nav>
-        <a className="btn" href={href(c.navButton && c.navButton.href)}>{c.navButton && c.navButton.label}</a>
-      </div></header>
+      <Header
+        brandName={s.brandName}
+        brandSub={s.brandSub}
+        logoIcon={s.logoIcon}
+        nav={arr(c.nav).map((n) => ({ label: n.label, href: href(n.href) }))}
+        btn={{ label: c.navButton && c.navButton.label, href: href(c.navButton && c.navButton.href) }}
+      />
 
       <main id="top">
         <div className="w hero">
