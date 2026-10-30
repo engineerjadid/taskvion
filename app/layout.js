@@ -20,6 +20,7 @@ export async function generateMetadata() {
   const logo = s.logoFull || s.logoIcon || '/logo-full.png';
 
   return {
+    verification: { google: "615avidDHiAQZWW5OiJPVMmHbfZwwRAsa6H12GnlOjo", },
     metadataBase: new URL(base),
     title: { default: title, template: `%s | ${s.brandName || 'TaskVion'}` },
     description,
