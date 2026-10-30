@@ -1,5 +1,22 @@
 <!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Admin Panel</title>
-<style>body{font-family:system-ui,sans-serif;background:#03265a;display:grid;place-items:center;min-height:100vh;margin:0}form{background:#fff;padding:32px;border-radius:18px;width:min(380px,92vw);display:grid;gap:12px}h1{margin:0;font-size:22px;color:#03265a}p{margin:0;color:#51627d;font-size:14px}input{padding:12px;border:1px solid #cdd9ea;border-radius:10px;font-size:15px}button{background:#0080fd;color:#fff;border:0;border-radius:10px;padding:13px;font-weight:700;font-size:15px;cursor:pointer}.er{color:#c0392b;font-size:14px}
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,sans-serif;background:#eef3fa;color:#0a1a33}
+.top{background:#03265a;color:#fff;padding:12px 20px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:5;gap:10px;flex-wrap:wrap}
+.top a{color:#9fd0ff;text-decoration:none;font-size:14px;margin-left:14px}.top b{font-size:17px}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;padding:14px 20px 0;max-width:1000px;margin:auto}
+.tab{background:#fff;border:1px solid #cdd9ea;border-radius:99px;padding:8px 16px;cursor:pointer;font-size:14px;font-weight:600;color:#03265a}.tab.on{background:#0080fd;color:#fff;border-color:#0080fd}
+#main{max-width:1000px;margin:14px auto 90px;padding:0 20px}
+fieldset{border:1px solid #cdd9ea;border-radius:14px;background:#fff;margin:0 0 14px;padding:14px 16px}legend{font-weight:700;color:#03265a;padding:0 8px;font-size:14px;text-transform:capitalize}
+.f{margin:10px 0}.f>label{display:block;font-size:12px;font-weight:700;color:#51627d;margin-bottom:4px;text-transform:capitalize}
+input[type=text],input[type=number],textarea,select,input:not([type]){width:100%;padding:10px 12px;border:1px solid #cdd9ea;border-radius:9px;font:inherit;font-size:14px;background:#fbfdff}textarea{min-height:80px;resize:vertical}
+input[type=color]{width:60px;height:38px;border:1px solid #cdd9ea;border-radius:8px;padding:2px;background:#fff}
+.rp{border:1px dashed #9db6d8;border-radius:12px;padding:10px;margin:10px 0;background:#f8fbff}.rh{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;font-size:12px;font-weight:700;color:#0080fd}
+button{font:inherit;cursor:pointer}.b{background:#0080fd;color:#fff;border:0;border-radius:9px;padding:9px 16px;font-weight:700;font-size:14px}.s{background:#e5eefb;color:#03265a;border:0;border-radius:7px;padding:4px 9px;font-size:12px;font-weight:700;margin-left:4px}.s.x{background:#fde6e3;color:#c0392b}
+.up{display:flex;gap:8px;align-items:center}.up img{height:38px;border:1px solid #cdd9ea;border-radius:6px;background:#fff;padding:2px}
+.bar{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #cdd9ea;padding:12px 20px;display:flex;gap:12px;align-items:center;justify-content:center;z-index:6}
+.m{background:#fff;border:1px solid #cdd9ea;border-radius:12px;padding:14px;margin-bottom:10px}.m.un{border-left:4px solid #0080fd}.m small{color:#51627d}
+#toast{font-size:14px;font-weight:600}.help{font-size:12px;color:#51627d;margin:2px 0 0}
+
 #login{position:fixed;inset:0;background:#03265a;display:none;place-items:center;z-index:50}#login form{background:#fff;padding:30px;border-radius:18px;width:min(380px,92vw);display:grid;gap:12px}#login h1{margin:0;font-size:22px;color:#03265a}#login input{padding:12px;border:1px solid #cdd9ea;border-radius:10px;font-size:15px}#le{color:#c0392b;font-size:14px}
 </style></head><body>
 <div id="login"><form id="lf"><h1>Admin login</h1><input id="lu" placeholder="Username" autocomplete="username" required><input id="lp" type="password" placeholder="Password" autocomplete="current-password" required><button class="b" style="padding:13px">Sign in</button><div id="le"></div></form></div>
