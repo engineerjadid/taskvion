@@ -37,7 +37,7 @@ export default async function Home() {
       <main id="top">
         <div className="w hero">
           <div>
-            <span className="pill">● {h.badge}</span>
+            <span className="pill"><i className="dot" />{h.badge}</span>
             <h1>{h.title} <em>{h.titleAccent}</em></h1>
             <p className="lead">{h.subtitle}</p>
             <p>

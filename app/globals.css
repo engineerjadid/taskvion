@@ -53,3 +53,8 @@ nav{display:flex;order:3;width:100%;overflow-x:auto;gap:20px;white-space:nowrap;
 .btn{padding:11px 18px}.stats{gap:20px 26px}.stats b{font-size:26px}
 section{padding:44px 0}.fg{grid-template-columns:1fr}.wa{padding:12px 14px}.wa span{display:none}
 form.c{padding:20px}}
+.dot{position:relative;display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--p);margin-right:9px;vertical-align:middle;animation:blink 1.2s ease-in-out infinite}
+.dot:after{content:"";position:absolute;inset:0;border-radius:50%;background:var(--p);animation:ring 1.2s ease-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.35}}
+@keyframes ring{0%{transform:scale(1);opacity:.55}100%{transform:scale(3);opacity:0}}
+@media(prefers-reduced-motion:reduce){.dot,.dot:after{animation:none}}
