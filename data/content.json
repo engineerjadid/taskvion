@@ -1,380 +1,463 @@
 {
- "settings": {
-  "brandName": "TaskVion",
-  "brandSub": "IT Solutions",
-  "logoIcon": "/logo-icon.png",
-  "logoFull": "/logo-full.png",
-  "favicon": "/favicon.png",
-  "siteTitle": "TaskVion IT Solutions | Property Preservation Back Office & BPO",
-  "metaDescription": "Work order processing, bid estimation, vendor management and invoicing for property preservation vendors. Technology, BPO and property preservation support.",
-  "email": "contact@yourdomain.com",
-  "whatsapp": "8801XXXXXXXXX",
-  "whatsappLabel": "Need urgent response? Chat with us",
-  "phone": "",
-  "address": "Dhaka, Bangladesh",
-  "footerText": "Work orders, bids, vendor management and invoicing for property preservation vendors.",
-  "copyright": "TaskVion IT Solutions. All rights reserved.",
-  "linkedin": "",
-  "facebook": ""
- },
- "theme": {
-  "primary": "#0080fd",
-  "dark": "#03265a",
-  "background": "#f4f8ff",
-  "text": "#0a1a33"
- },
- "nav": [
-  {
-   "label": "Services",
-   "href": "#services"
+  "settings": {
+    "brandName": "TaskVion",
+    "brandSub": "IT Solutions",
+    "logoIcon": "/logo-icon.png",
+    "logoFull": "/logo-full.png",
+    "favicon": "/favicon.png",
+    "siteTitle": "TaskVion IT Solutions | Property Preservation Back Office Support",
+    "metaDescription": "U.S.-focused property preservation back-office support, including work order processing, photo and document review, bid preparation, invoice handling, BPO and IT solutions.",
+    "email": "",
+    "whatsapp": "",
+    "whatsappLabel": "Chat with our team",
+    "phone": "",
+    "address": "Dhaka, Bangladesh",
+    "footerText": "U.S.-focused property preservation back-office support, BPO and practical IT solutions.",
+    "copyright": "TaskVion IT Solutions. All rights reserved.",
+    "linkedin": "",
+    "facebook": ""
   },
-  {
-   "label": "How it works",
-   "href": "#how"
+  "theme": {
+    "primary": "#0080fd",
+    "dark": "#03265a",
+    "background": "#f4f8ff",
+    "text": "#0a1a33"
   },
-  {
-   "label": "Pricing",
-   "href": "#pricing"
-  },
-  {
-   "label": "FAQ",
-   "href": "#faq"
-  },
-  {
-   "label": "Contact",
-   "href": "#contact"
-  }
- ],
- "navButton": {
-  "label": "Get started",
-  "href": "#contact"
- },
- "hero": {
-  "badge": "Technology · BPO · Property Preservation Support",
-  "title": "Property preservation work orders, processed",
-  "titleAccent": "right the first time.",
-  "subtitle": "We handle your work orders, bids, vendor paperwork and invoicing, so you can focus on the field and not the portal.",
-  "button1": {
-   "label": "Send us your work orders",
-   "href": "#contact"
-  },
-  "button2": {
-   "label": "Explore services",
-   "href": "#services"
-  },
-  "stats": [
-   {
-    "value": "24/7",
-    "label": "Support"
-   },
-   {
-    "value": "QC",
-    "label": "Review on every order"
-   },
-   {
-    "value": "< 1 hr",
-    "label": "Typical turnaround"
-   }
-  ],
-  "panelShow": true,
-  "panel": {
-   "tag": "EXAMPLE WORK ORDER",
-   "title": "Processed and submitted",
-   "items": [
+  "nav": [
     {
-     "title": "Order received",
-     "desc": "Scope and due date confirmed"
+      "label": "About",
+      "href": "#about"
     },
     {
-     "title": "Allowables and scope checked",
-     "desc": "Matched to client guidelines"
+      "label": "Services",
+      "href": "#services"
     },
     {
-     "title": "Photos and report QC reviewed",
-     "desc": "Reviewed before it goes out"
+      "label": "How it works",
+      "href": "#how"
+    },
+    {
+      "label": "Pricing",
+      "href": "#pricing"
+    },
+    {
+      "label": "FAQ",
+      "href": "#faq"
+    },
+    {
+      "label": "Contact",
+      "href": "#contact"
     }
-   ],
-   "footerLeft": "All checks passed",
-   "footerRight": "On time"
-  }
- },
- "platforms": {
-  "show": true,
-  "items": [
-   "PPW",
-   "Pruvan",
-   "MCS",
-   "ServiceLink",
-   "Cyprexx",
-   "Altisource",
-   "ServiceBench"
-  ]
- },
- "services": {
-  "show": true,
-  "label": "SERVICES",
-  "title": "Everything your back office needs,",
-  "titleAccent": "handled.",
-  "subtitle": "Not generic admin help. A dedicated team that knows REO platforms, allowables, scorecards and what your clients expect.",
-  "items": [
-   {
-    "title": "Work order processing",
-    "desc": "End-to-end management from intake to platform submission, with every deadline tracked.",
-    "points": [
-     "Intake and data entry",
-     "Platform submission",
-     "Deadline tracking"
-    ]
-   },
-   {
-    "title": "Bid estimation",
-    "desc": "Accurate, competitive bids submitted promptly, so slow turnaround never costs you a job.",
-    "points": [
-     "Accurate pricing",
-     "Fast submission"
-    ]
-   },
-   {
-    "title": "Vendor management",
-    "desc": "Keep your sub-contractor network compliant and efficient.",
-    "points": [
-     "Onboarding",
-     "Document tracking",
-     "Performance checks"
-    ]
-   },
-   {
-    "title": "Invoicing and billing",
-    "desc": "Invoices submitted accurately and on time, so cash flow stays steady.",
-    "points": [
-     "Accurate submissions",
-     "On-time billing",
-     "Organized receivables"
-    ]
-   },
-   {
-    "title": "Web and software development",
-    "desc": "Websites, dashboards and custom tools for your business.",
-    "points": [
-     "Business websites",
-     "Admin panels",
-     "Automation"
-    ]
-   },
-   {
-    "title": "BPO and data entry",
-    "desc": "Reliable remote support for repetitive back-office tasks.",
-    "points": [
-     "Data entry",
-     "Document processing",
-     "Customer support"
-    ]
-   }
-  ]
- },
- "steps": {
-  "show": true,
-  "label": "HOW IT WORKS",
-  "title": "Simple to start.",
-  "titleAccent": "Easy to scale.",
-  "items": [
-   {
-    "title": "Send us the work order",
-    "desc": "Assign orders the way you already do. We confirm scope and timeline."
-   },
-   {
-    "title": "We process it on your platform",
-    "desc": "Our team works in PPW, Pruvan, MCS and more, with no training needed."
-   },
-   {
-    "title": "QC review before it goes out",
-    "desc": "Every work order, report, bid and invoice is checked first."
-   },
-   {
-    "title": "You get faster approvals",
-    "desc": "Fewer errors and deductions, with your deadlines kept."
-   }
-  ]
- },
- "why": {
-  "show": true,
-  "label": "WHY US",
-  "title": "Processing you can rely on.",
-  "titleAccent": "Every single time.",
-  "items": [
-   {
-    "title": "Industry-specific expertise",
-    "desc": "We know REO platforms, allowables, scorecards and compliance requirements."
-   },
-   {
-    "title": "Accurate, on-time submissions",
-    "desc": "Every work order, report, bid and invoice is reviewed before it goes out."
-   },
-   {
-    "title": "A true back-office partner",
-    "desc": "Proactive and communicative, we work as an extension of your team."
-   }
-  ]
- },
- "pricing": {
-  "show": true,
-  "label": "PRICING",
-  "title": "Simple pricing,",
-  "titleAccent": "built around your volume.",
-  "subtitle": "Edit these plans from the admin panel. Replace the placeholder prices with your own.",
-  "items": [
-   {
-    "name": "Starter",
-    "price": "Contact us",
-    "desc": "For vendors with a small monthly volume.",
-    "features": [
-     "Work order processing",
-     "Photo and report QC",
-     "Email support"
-    ],
-    "featured": false,
-    "buttonLabel": "Get a quote"
-   },
-   {
-    "name": "Growth",
-    "price": "Contact us",
-    "desc": "For growing vendors who want full back-office coverage.",
-    "features": [
-     "Everything in Starter",
-     "Bids and invoicing",
-     "Vendor management",
-     "24/7 support"
-    ],
-    "featured": true,
-    "buttonLabel": "Get a quote"
-   },
-   {
-    "name": "Custom",
-    "price": "Let's talk",
-    "desc": "For larger teams and special workflows.",
-    "features": [
-     "Dedicated team",
-     "Custom reporting",
-     "Priority turnaround"
-    ],
-    "featured": false,
-    "buttonLabel": "Talk to us"
-   }
-  ]
- },
- "testimonials": {
-  "show": false,
-  "label": "CLIENT REVIEWS",
-  "title": "Vendors who stopped",
-  "titleAccent": "chasing paperwork.",
-  "items": []
- },
- "faq": {
-  "show": true,
-  "label": "FAQ",
-  "title": "Questions,",
-  "titleAccent": "answered.",
-  "items": [
-   {
-    "q": "What is property preservation work order processing?",
-    "a": "It is the back-office work that keeps preservation jobs moving: receiving work orders, updating client platforms, submitting photos and reports, tracking deadlines, and preparing bids and invoices."
-   },
-   {
-    "q": "Which platforms do you support?",
-    "a": "PPW, Pruvan, MCS and more. Tell us your platform and we will confirm."
-   },
-   {
-    "q": "How fast is your turnaround?",
-    "a": "Typically under one hour for standard work orders."
-   },
-   {
-    "q": "How much does it cost?",
-    "a": "It depends on your volume and services. Send us a message for a quote."
-   },
-   {
-    "q": "How do I get started?",
-    "a": "Fill in the form below with your platforms and volume, and we will start on your work orders right away."
-   }
-  ]
- },
- "contact": {
-  "label": "GET STARTED",
-  "title": "Ready to hand off the",
-  "titleAccent": "paperwork?",
-  "subtitle": "Tell us your platforms and volume. We can start on your work orders right away.",
-  "buttonLabel": "Submit",
-  "successMessage": "Thank you! We received your message and will reply shortly.",
-  "options": [
-   "Work order processing",
-   "Bid estimation",
-   "Vendor management",
-   "Invoicing and billing",
-   "Web and software development",
-   "BPO and data entry",
-   "Other"
-  ]
- },
- "_templates": {
-  "testimonials": {
-   "name": "",
-   "role": "",
-   "text": ""
+  ],
+  "navButton": {
+    "label": "Get started",
+    "href": "#contact"
   },
-  "platforms": "",
-  "points": "",
-  "features": "",
-  "options": ""
- },
- "privacy": {
-  "show": true,
-  "title": "Privacy Policy",
-  "lastUpdated": "October 30, 2026",
-  "intro": "This Privacy Policy explains what information TaskVion IT Solutions (\"we\", \"us\") collects through this website, how we use it, and the choices you have. By using this website you agree to the practices described here.",
-  "sections": [
-   {
-    "heading": "Information we collect",
-    "body": "When you use our contact form we collect the details you type in: your name, email address, the service you select and your message.\nWe also process technical data such as your IP address, which is used briefly to prevent spam and abuse, and which our hosting providers may record in their server logs.\nPlease do not send passwords, payment card numbers or government ID numbers through the contact form."
-   },
-   {
-    "heading": "How we use your information",
-    "body": "- To reply to your enquiry and provide quotes or services you ask for.\n- To operate, secure and improve this website.\n- To prevent spam, fraud and abuse.\n- To meet legal or contractual obligations."
-   },
-   {
-    "heading": "Client work order data",
-    "body": "If you become a client and share work orders, property details, photos, reports or vendor documents with us, we use them only to deliver the services you requested and treat them as confidential. The terms for that data are set out in our service agreement with you."
-   },
-   {
-    "heading": "Cookies and tracking",
-    "body": "This public website does not use advertising cookies or third-party analytics. A secure session cookie is used only for the administrator login and is not set for ordinary visitors. If we add analytics in the future, we will update this policy."
-   },
-   {
-    "heading": "Third-party services",
-    "body": "We rely on trusted providers to run this website:\n- Vercel for hosting.\n- Upstash for the database that stores website content and contact messages.\n- Vercel Blob for uploaded images.\n- Google Fonts for typefaces, which are loaded from Google's servers and may receive your IP address.\n- WhatsApp, if you click the chat button. Your use of WhatsApp is governed by its own privacy policy.\nThese providers process data on our behalf under their own terms and security practices."
-   },
-   {
-    "heading": "Data retention",
-    "body": "We keep contact messages for as long as needed to respond to you and to maintain our business records, and then delete them. You can ask us to delete your message at any time."
-   },
-   {
-    "heading": "Data security",
-    "body": "We use reasonable technical and organisational measures to protect your information, including encrypted connections (HTTPS) and password-protected administration. No method of transmission or storage is completely secure, so we cannot guarantee absolute security."
-   },
-   {
-    "heading": "International transfers",
-    "body": "We operate from Bangladesh, and our hosting and database providers store data on servers in the United States and other locations. By contacting us you understand your information may be processed outside your country."
-   },
-   {
-    "heading": "Your rights",
-    "body": "You may ask us to access, correct or delete the personal information we hold about you, or to stop contacting you. Email us using the address below and we will respond within a reasonable time."
-   },
-   {
-    "heading": "Children",
-    "body": "Our services are for businesses and are not directed to anyone under 18. We do not knowingly collect information from children."
-   },
-   {
-    "heading": "Changes to this policy",
-    "body": "We may update this policy from time to time. The date at the top of this page shows when it was last changed."
-   }
-  ]
- }
+  "hero": {
+    "badge": "PROPERTY PRESERVATION · BPO · IT SOLUTIONS",
+    "title": "Your property preservation",
+    "titleAccent": "back office, supported.",
+    "subtitle": "Work order processing, photo and document review, bid and invoice support, and deadline follow-up — delivered through a clear workflow aligned with your team’s requirements.",
+    "button1": {
+      "label": "Discuss your workflow",
+      "href": "#contact"
+    },
+    "button2": {
+      "label": "Explore our services",
+      "href": "#services"
+    },
+    "stats": [
+      {
+        "value": "U.S.",
+        "label": "Focused support"
+      },
+      {
+        "value": "QC",
+        "label": "Review-led workflow"
+      },
+      {
+        "value": "BPO",
+        "label": "Back-office services"
+      }
+    ],
+    "panelShow": true,
+    "panel": {
+      "tag": "OUR WORKFLOW",
+      "title": "From work order to submission",
+      "items": [
+        {
+          "title": "Intake and organize",
+          "desc": "Capture work scope, instructions and due dates"
+        },
+        {
+          "title": "Process and review",
+          "desc": "Check details against the requirements provided"
+        },
+        {
+          "title": "Prepare documentation",
+          "desc": "Organize photos, reports, bids and invoices"
+        },
+        {
+          "title": "Track and communicate",
+          "desc": "Monitor status and flag pending items"
+        }
+      ],
+      "footerLeft": "Process-led support",
+      "footerRight": "Deadline aware"
+    }
+  },
+  "platforms": {
+    "show": true,
+    "items": [
+      "PPW",
+      "Pruvan",
+      "MCS",
+      "ServiceLink",
+      "Cyprexx",
+      "Altisource",
+      "ServiceBench"
+    ]
+  },
+  "services": {
+    "show": true,
+    "label": "OUR SERVICES",
+    "title": "Specialized support for",
+    "titleAccent": "your operations.",
+    "subtitle": "Start with the property preservation workflows you need most, then add complementary BPO or technology support as your operation grows.",
+    "items": [
+      {
+        "title": "Work order processing",
+        "desc": "Work order intake, data entry and platform updates, with scope details and due dates organized against your instructions.",
+        "points": [
+          "Intake and data entry",
+          "Platform submission",
+          "Deadline tracking"
+        ],
+        "category": "preservation"
+      },
+      {
+        "title": "Bid estimation",
+        "desc": "Bid preparation support using the scope, pricing rules, photos and documentation supplied or approved by your team.",
+        "points": [
+          "Scope and photo review",
+          "Estimate preparation",
+          "Submission tracking"
+        ],
+        "category": "preservation"
+      },
+      {
+        "title": "QC and exception follow-up",
+        "desc": "Help identify missing details, inconsistent records and items that need clarification before a work order is moved forward.",
+        "points": [
+          "Checklist-based review",
+          "Exception tracking",
+          "Rework coordination"
+        ],
+        "category": "preservation"
+      },
+      {
+        "title": "Inspection and completion reports",
+        "desc": "Administrative preparation and review support for inspection records, completion reports and supporting job documentation.",
+        "points": [
+          "Report preparation",
+          "Completion documentation",
+          "Status updates"
+        ],
+        "category": "preservation"
+      },
+      {
+        "title": "Photo and document review",
+        "desc": "Review submitted property photos and supporting documents against the checklist and job requirements provided by your team.",
+        "points": [
+          "Photo set review",
+          "Document completeness",
+          "Missing-item follow-up"
+        ],
+        "category": "preservation"
+      },
+      {
+        "title": "Vendor management",
+        "desc": "Administrative support for vendor records, onboarding documents, task coordination and follow-up based on your process.",
+        "points": [
+          "Vendor records",
+          "Document tracking",
+          "Task follow-up"
+        ],
+        "category": "preservation"
+      },
+      {
+        "title": "Invoicing and billing",
+        "desc": "Invoice preparation and submission support, with records organized for review and follow-up.",
+        "points": [
+          "Accurate submissions",
+          "On-time billing",
+          "Organized receivables"
+        ],
+        "category": "preservation"
+      },
+      {
+        "title": "Web and software development",
+        "desc": "Business websites, internal dashboards and practical tools designed around your workflow.",
+        "points": [
+          "Business websites",
+          "Admin panels",
+          "Automation"
+        ],
+        "category": "technology"
+      },
+      {
+        "title": "BPO and data entry",
+        "desc": "Structured remote support for document handling, data entry and repeatable administrative processes.",
+        "points": [
+          "Data entry",
+          "Document processing",
+          "Customer support"
+        ],
+        "category": "technology"
+      }
+    ]
+  },
+  "steps": {
+    "show": true,
+    "label": "HOW WE WORK",
+    "title": "A structured process.",
+    "titleAccent": "Aligned with your team.",
+    "items": [
+      {
+        "title": "Understand your workflow",
+        "desc": "We review your task types, client instructions, platforms and expected volumes."
+      },
+      {
+        "title": "Agree scope and access",
+        "desc": "We define responsibilities, communication, access controls and review checkpoints."
+      },
+      {
+        "title": "Process and review",
+        "desc": "Tasks are handled against the agreed checklist, with exceptions flagged for clarification."
+      },
+      {
+        "title": "Report and improve",
+        "desc": "We share status updates and use feedback to refine the workflow."
+      }
+    ]
+  },
+  "why": {
+    "show": true,
+    "label": "WHY TASKVION",
+    "title": "A practical extension",
+    "titleAccent": "of your back office.",
+    "items": [
+      {
+        "title": "Relevant workflow experience",
+        "desc": "Experience with property preservation work order processing, documentation and portal-based operations."
+      },
+      {
+        "title": "Clear quality checkpoints",
+        "desc": "Agreed checklists and review steps help catch missing information before submission."
+      },
+      {
+        "title": "Responsive communication",
+        "desc": "A defined point of contact, status updates and clear escalation for exceptions."
+      },
+      {
+        "title": "Flexible support scope",
+        "desc": "Start with selected tasks and expand only when the workflow and service expectations are agreed."
+      }
+    ]
+  },
+  "pricing": {
+    "show": true,
+    "label": "PRICING",
+    "title": "Simple pricing,",
+    "titleAccent": "built around your volume.",
+    "subtitle": "Support scope and pricing are based on task types, monthly volume, complexity and agreed service levels.",
+    "items": [
+      {
+        "name": "Starter",
+        "price": "Let’s discuss",
+        "desc": "For vendors with a small monthly volume.",
+        "features": [
+          "Work order processing",
+          "Photo and report QC",
+          "Email support"
+        ],
+        "featured": false,
+        "buttonLabel": "Get a quote"
+      },
+      {
+        "name": "Growth",
+        "price": "Let’s discuss",
+        "desc": "For growing vendors who want full back-office coverage.",
+        "features": [
+          "Everything in Starter",
+          "Bids and invoicing",
+          "Vendor management"
+        ],
+        "featured": true,
+        "buttonLabel": "Get a quote"
+      },
+      {
+        "name": "Custom",
+        "price": "Custom scope",
+        "desc": "For larger teams and special workflows.",
+        "features": [
+          "Agreed task coverage",
+          "Status and progress reporting",
+          "Turnaround agreed by scope"
+        ],
+        "featured": false,
+        "buttonLabel": "Talk to us"
+      }
+    ]
+  },
+  "testimonials": {
+    "show": false,
+    "label": "CLIENT REVIEWS",
+    "title": "Vendors who stopped",
+    "titleAccent": "chasing paperwork.",
+    "items": []
+  },
+  "faq": {
+    "show": true,
+    "label": "FAQ",
+    "title": "Questions,",
+    "titleAccent": "answered.",
+    "items": [
+      {
+        "q": "What property preservation tasks can you support?",
+        "a": "Depending on the agreed scope, support can include work order intake and processing, portal updates, photo and document review, bid preparation, invoice handling, inspection and completion report processing, and deadline follow-up."
+      },
+      {
+        "q": "Which platforms can you work with?",
+        "a": "Our team has experience with property preservation workflows and platforms including PPW, Pruvan, MCS, ServiceLink and others. We confirm platform fit, access requirements and current workflow before engagement."
+      },
+      {
+        "q": "How do you handle quality and deadlines?",
+        "a": "We agree on task checklists, review points, due-date tracking and escalation rules with each client. Turnaround expectations are confirmed based on volume and task complexity."
+      },
+      {
+        "q": "Can you support only selected tasks?",
+        "a": "Yes. You can begin with a defined set of tasks, such as work order entry, photo review, bid preparation or invoice processing, and adjust the scope as your needs change."
+      },
+      {
+        "q": "How do you protect client information?",
+        "a": "Access, data handling, communication channels and retention expectations should be agreed before work begins. We recommend role-based access and sharing only the information required for each task."
+      },
+      {
+        "q": "How is pricing determined?",
+        "a": "Pricing depends on task types, monthly volume, complexity, platform requirements and agreed coverage. Contact us to discuss a suitable scope."
+      },
+      {
+        "q": "How do we get started?",
+        "a": "Send a short overview of your business, platforms, task types and estimated volume. We can then discuss fit, workflow, access and next steps."
+      },
+      {
+        "q": "What information do you need to get started?",
+        "a": "A brief overview of your task types, expected monthly volume, client requirements, platform(s), preferred communication channel and any access or security policies is a useful starting point."
+      }
+    ]
+  },
+  "contact": {
+    "label": "GET STARTED",
+    "title": "Let’s discuss your",
+    "titleAccent": "back-office needs.",
+    "subtitle": "Tell us which workflows you want to delegate, the platforms you use and your approximate task volume. We’ll discuss scope, access requirements, review checkpoints and a practical way to work together.",
+    "buttonLabel": "Submit",
+    "successMessage": "Thank you! We received your message and will reply shortly.",
+    "options": [
+      "Work order processing",
+      "Photo and document review",
+      "Bid preparation",
+      "Invoice processing",
+      "Vendor administration",
+      "BPO and data entry",
+      "Web and software development",
+      "Other"
+    ]
+  },
+  "_templates": {
+    "testimonials": {
+      "name": "",
+      "role": "",
+      "text": ""
+    },
+    "platforms": "",
+    "points": "",
+    "features": "",
+    "options": ""
+  },
+  "privacy": {
+    "show": true,
+    "title": "Privacy Policy",
+    "lastUpdated": "October 30, 2026",
+    "intro": "This Privacy Policy explains what information TaskVion IT Solutions (\"we\", \"us\") collects through this website, how we use it, and the choices you have. By using this website you agree to the practices described here.",
+    "sections": [
+      {
+        "heading": "Information we collect",
+        "body": "When you use our contact form we collect the details you type in: your name, email address, the service you select and your message.\nWe also process technical data such as your IP address, which is used briefly to prevent spam and abuse, and which our hosting providers may record in their server logs.\nPlease do not send passwords, payment card numbers or government ID numbers through the contact form."
+      },
+      {
+        "heading": "How we use your information",
+        "body": "- To reply to your enquiry and provide quotes or services you ask for.\n- To operate, secure and improve this website.\n- To prevent spam, fraud and abuse.\n- To meet legal or contractual obligations."
+      },
+      {
+        "heading": "Client work order data",
+        "body": "If you become a client and share work orders, property details, photos, reports or vendor documents with us, we use them only to deliver the services you requested and treat them as confidential. The terms for that data are set out in our service agreement with you."
+      },
+      {
+        "heading": "Cookies and tracking",
+        "body": "This public website does not use advertising cookies or third-party analytics. A secure session cookie is used only for the administrator login and is not set for ordinary visitors. If we add analytics in the future, we will update this policy."
+      },
+      {
+        "heading": "Third-party services",
+        "body": "We rely on trusted providers to run this website:\n- Vercel for hosting.\n- Upstash for the database that stores website content and contact messages.\n- Vercel Blob for uploaded images.\n- Google Fonts for typefaces, which are loaded from Google's servers and may receive your IP address.\n- WhatsApp, if you click the chat button. Your use of WhatsApp is governed by its own privacy policy.\nThese providers process data on our behalf under their own terms and security practices."
+      },
+      {
+        "heading": "Data retention",
+        "body": "We keep contact messages for as long as needed to respond to you and to maintain our business records, and then delete them. You can ask us to delete your message at any time."
+      },
+      {
+        "heading": "Data security",
+        "body": "We use reasonable technical and organisational measures to protect your information, including encrypted connections (HTTPS) and password-protected administration. No method of transmission or storage is completely secure, so we cannot guarantee absolute security."
+      },
+      {
+        "heading": "International transfers",
+        "body": "We operate from Bangladesh, and our hosting and database providers store data on servers in the United States and other locations. By contacting us you understand your information may be processed outside your country."
+      },
+      {
+        "heading": "Your rights",
+        "body": "You may ask us to access, correct or delete the personal information we hold about you, or to stop contacting you. Email us using the address below and we will respond within a reasonable time."
+      },
+      {
+        "heading": "Children",
+        "body": "Our services are for businesses and are not directed to anyone under 18. We do not knowingly collect information from children."
+      },
+      {
+        "heading": "Changes to this policy",
+        "body": "We may update this policy from time to time. The date at the top of this page shows when it was last changed."
+      }
+    ]
+  },
+  "about": {
+    "show": true,
+    "label": "ABOUT TASKVION",
+    "title": "A focused back-office partner",
+    "titleAccent": "for property preservation teams.",
+    "subtitle": "TaskVion IT Solutions provides remote operational support for U.S.-focused property preservation businesses. We help organize repeatable administrative workflows so your team can stay focused on field operations, vendor relationships and client requirements.",
+    "items": [
+      {
+        "title": "Property preservation focused",
+        "desc": "Support centered on work orders, property documentation, bids, invoices, inspections and completion reporting."
+      },
+      {
+        "title": "Process-led execution",
+        "desc": "Tasks follow your work instructions, client requirements, checklists and agreed approval steps."
+      },
+      {
+        "title": "Clear communication",
+        "desc": "Status visibility, exception follow-up and structured handoffs help keep work moving."
+      }
+    ],
+    "note": "Service scope, platform access, turnaround expectations and information-handling procedures are agreed before engagement."
+  }
 }

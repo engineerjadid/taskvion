@@ -1,8 +1,12 @@
-export default async function robots() {
-  const base = (process.env.NEXT_PUBLIC_SITE_URL || 'https://taskvion.vercel.app').replace(/\/$/, '');
+import { siteUrl } from '../lib/site';
+
+export default function robots() {
+  const base = siteUrl();
   return {
-    rules: [{ userAgent: '*', allow: '/', disallow: ['/admin', '/admin.html', '/api/'] }],
+    rules: [
+      { userAgent: '*', allow: '/', disallow: ['/admin', '/admin.html', '/api/'] }
+    ],
     sitemap: `${base}/sitemap.xml`,
-    host: base,
+    host: base
   };
 }

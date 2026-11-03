@@ -35,7 +35,7 @@ export default async function Home() {
       />
 
       <main id="top">
-        <div className="w hero">
+        <div className="w hero" aria-label="TaskVion introduction">
           <div>
             <span className="pill"><i className="dot" />{h.badge}</span>
             <h1>{h.title} <em>{h.titleAccent}</em></h1>
@@ -57,23 +57,49 @@ export default async function Home() {
         </div>
 
         {c.platforms && c.platforms.show && arr(c.platforms.items).length ? (
-          <div className="plat"><div className="marq"><div className="track">
+          <div className="plat" aria-label="Platforms and workflows"><div className="platform-caption">WORKFLOW EXPERIENCE ACROSS PLATFORMS</div><div className="marq"><div className="track">
             {[0, 1].map((n) => (
               <div key={n} aria-hidden={n === 1}>{[0, 1, 2].map((r) => c.platforms.items.map((x, i) => <b key={r + '-' + i}>{x}</b>))}</div>
             ))}
           </div></div></div>
         ) : null}
 
+        {c.about && c.about.show ? (
+          <section id="about" aria-label="About TaskVion"><div className="w">
+            <Head sec={c.about} />
+            <div className="about-intro"><p>{c.about.subtitle}</p></div>
+            <div className="grid about-grid">
+              {arr(c.about.items).map((x, k) => (
+                <div className="card about-card" key={k}><span className="num">PILLAR / {String(k + 1).padStart(2, '0')}</span><h3>{x.title}</h3><p className="mut">{x.desc}</p></div>
+              ))}
+            </div>
+            {c.about.note ? <p className="about-note">{c.about.note}</p> : null}
+          </div></section>
+        ) : null}
+
         {c.services && c.services.show ? (
-          <section id="services"><div className="w"><Head sec={c.services} /><div className="grid">
-            {arr(c.services.items).map((x, k) => (
-              <div className="card" key={k}><span className="num">{String(k + 1).padStart(2, '0')}</span><h3>{x.title}</h3><p className="mut">{x.desc}</p><Points list={x.points} /></div>
-            ))}
-          </div></div></section>
+          <section id="services"><div className="w"><Head sec={c.services} />
+            <div className="service-group">
+              <div className="group-heading"><span className="group-mark">01</span><div><h3>Property Preservation Support</h3><p className="mut">Operational support for the day-to-day work order lifecycle.</p></div></div>
+              <div className="grid">
+                {arr(c.services.items).filter((x) => x.category === 'preservation' || (x.category !== 'technology' && !['Web and software development', 'BPO and data entry'].includes(x.title))).map((x, k) => (
+                  <div className="card service-card" key={x.title}><span className="num">PRESERVATION / {String(k + 1).padStart(2, '0')}</span><h3>{x.title}</h3><p className="mut">{x.desc}</p><Points list={x.points} /></div>
+                ))}
+              </div>
+            </div>
+            <div className="service-group technology-group">
+              <div className="group-heading"><span className="group-mark">02</span><div><h3>BPO &amp; IT Solutions</h3><p className="mut">Complementary services for wider business operations.</p></div></div>
+              <div className="grid">
+                {arr(c.services.items).filter((x) => x.category === 'technology' || ['Web and software development', 'BPO and data entry'].includes(x.title)).map((x, k) => (
+                  <div className="card service-card" key={x.title}><span className="num">BPO &amp; IT / {String(k + 1).padStart(2, '0')}</span><h3>{x.title}</h3><p className="mut">{x.desc}</p><Points list={x.points} /></div>
+                ))}
+              </div>
+            </div>
+          </div></section>
         ) : null}
 
         {c.steps && c.steps.show ? (
-          <section id="how" style={{ paddingTop: 20 }}><div className="w"><Head sec={c.steps} /><div className="grid">
+          <section id="how" aria-label="How TaskVion works" style={{ paddingTop: 20 }}><div className="w"><Head sec={c.steps} /><div className="grid">
             {arr(c.steps.items).map((x, k) => (
               <div key={k}><div className="n">{k + 1}</div><h3 style={{ margin: '0 0 6px', color: 'var(--d)' }}>{x.title}</h3><p className="mut" style={{ margin: 0 }}>{x.desc}</p></div>
             ))}
@@ -81,7 +107,7 @@ export default async function Home() {
         ) : null}
 
         {c.why && c.why.show ? (
-          <section className="dark" id="why"><div className="w"><Head sec={c.why} /><div className="grid">
+          <section className="dark" id="why" aria-label="Why choose TaskVion"><div className="w"><Head sec={c.why} /><div className="grid">
             {arr(c.why.items).map((x, k) => <div className="card" key={k}><h3>{x.title}</h3><p className="mut">{x.desc}</p></div>)}
           </div></div></section>
         ) : null}
@@ -107,7 +133,7 @@ export default async function Home() {
         ) : null}
 
         {c.faq && c.faq.show ? (
-          <section id="faq"><div className="w" style={{ maxWidth: 760 }}><Head sec={c.faq} />
+          <section id="faq" aria-label="Frequently asked questions"><div className="w" style={{ maxWidth: 760 }}><Head sec={c.faq} />
             {arr(c.faq.items).map((x, k) => <details key={k}><summary>{x.q}</summary><p className="mut">{x.a}</p></details>)}
           </div></section>
         ) : null}
