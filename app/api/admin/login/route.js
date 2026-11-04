@@ -26,16 +26,14 @@ export async function POST(req) {
     const r = redis();
     if (!r) return NextResponse.json({ ok: false, error: 'Admin login is unavailable until Redis is connected.' }, { status: 503 });
     const key = `rl:login:${ipKey}`;
-    await r.set(key, 0, { ex: 900, nx: true });
     const attempts = await r.incr(key);
+    if (attempts === 1) await r.expire(key, 900);
     if (attempts > 8) return NextResponse.json({ ok: false, error: 'Too many attempts. Try again in 15 minutes.' }, { status: 429 });
   } catch {
     return NextResponse.json({ ok: false, error: 'Login protection is temporarily unavailable. Please try again later.' }, { status: 503 });
   }
-  const userOk = sameStr(body.user, username);
-  const passOk = sameStr(body.password, password);
-  if (!(userOk && passOk)) return NextResponse.json({ ok: false, error: 'Wrong username or password.' }, { status: 401 });
-  try { await redis().del(`rl:login:${ipKey}`); } catch {}
+  const valid = sameStr(body.user, username) && sameStr(body.password, password);
+  if (!valid) return NextResponse.json({ ok: false, error: 'Wrong username or password.' }, { status: 401 });
   const response = NextResponse.json({ ok: true }, { headers: { 'Cache-Control': 'no-store' } });
   response.cookies.set('tv_admin', sign(Date.now() + COOKIE.maxAge * 1000), COOKIE);
   return response;
