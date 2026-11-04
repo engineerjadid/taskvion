@@ -3,7 +3,7 @@ import ContactForm from '../components/ContactForm';
 import Header from '../components/Header';
 
 export const dynamic = 'force-dynamic';
-const href = (u) => (/^\s*javascript:/i.test(u || '') ? '#' : u || '#');
+const href = (u) => { const v = String(u || '').trim(); return /^(https?:\/\/|mailto:|tel:|#|\/(?!\/))/i.test(v) ? v : '#'; };
 const arr = (x) => (Array.isArray(x) ? x : []);
 
 function Head({ sec }) {
@@ -83,7 +83,7 @@ export default async function Home() {
               <div className="group-heading"><span className="group-mark">01</span><div><h3>Property Preservation Support</h3><p className="mut">Operational support for the day-to-day work order lifecycle.</p></div></div>
               <div className="grid">
                 {arr(c.services.items).filter((x) => x.category === 'preservation' || (x.category !== 'technology' && !['Web and software development', 'BPO and data entry'].includes(x.title))).map((x, k) => (
-                  <div className="card service-card" key={x.title}><span className="num">PRESERVATION / {String(k + 1).padStart(2, '0')}</span><h3>{x.title}</h3><p className="mut">{x.desc}</p><Points list={x.points} /></div>
+                  <div className="card service-card" key={k}><span className="num">PRESERVATION / {String(k + 1).padStart(2, '0')}</span><h3>{x.title}</h3><p className="mut">{x.desc}</p><Points list={x.points} /></div>
                 ))}
               </div>
             </div>
@@ -91,7 +91,7 @@ export default async function Home() {
               <div className="group-heading"><span className="group-mark">02</span><div><h3>BPO &amp; IT Solutions</h3><p className="mut">Complementary services for wider business operations.</p></div></div>
               <div className="grid">
                 {arr(c.services.items).filter((x) => x.category === 'technology' || ['Web and software development', 'BPO and data entry'].includes(x.title)).map((x, k) => (
-                  <div className="card service-card" key={x.title}><span className="num">BPO &amp; IT / {String(k + 1).padStart(2, '0')}</span><h3>{x.title}</h3><p className="mut">{x.desc}</p><Points list={x.points} /></div>
+                  <div className="card service-card" key={k}><span className="num">BPO &amp; IT / {String(k + 1).padStart(2, '0')}</span><h3>{x.title}</h3><p className="mut">{x.desc}</p><Points list={x.points} /></div>
                 ))}
               </div>
             </div>
