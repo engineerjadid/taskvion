@@ -9,7 +9,7 @@
 4. Project > Settings > **Environment Variables**, add:
    - `ADMIN_USER` = your admin username
    - `ADMIN_PASSWORD` = a long strong password
-   - `SESSION_SECRET` = any long random text (30+ characters)
+   - `SESSION_SECRET` = a cryptographically random secret of at least 32 characters (generate with `openssl rand -base64 48`)
 5. **Redeploy** (Deployments > ... > Redeploy).
 6. Open `https://www.taskvionit.com/admin` and log in.
 
@@ -33,3 +33,11 @@ Custom domain: Project > Settings > Domains. Add `www.taskvionit.com` and set it
 6. Add a real social profile URL and business contact details in Admin only when those details are public and correct. Do not add fabricated reviews, client logos, certifications, U.S. office addresses or performance guarantees.
 
 The default canonical origin is `https://www.taskvionit.com`. Preview deployments should not be submitted to Search Console as the canonical site.
+
+## Admin CMS and data safety updates
+- Admin login requires `ADMIN_USER`, `ADMIN_PASSWORD`, `SESSION_SECRET` (32+ characters), and Upstash Redis.
+- Contact messages and content are stored in Upstash Redis. Back up the content from Admin before major edits.
+- Admin now supports JSON backup download, JSON restore into the editor, and up to 10 saved content versions. Restoring a version loads it into the editor first; click Save to publish.
+- If Redis is temporarily unavailable, the Admin content endpoint fails closed instead of silently presenting defaults for editing.
+- Image uploads accept PNG, JPEG, WEBP, GIF and ICO files up to 4 MB and verify file signatures before upload. SVG uploads are intentionally disabled.
+- Keep all environment secrets in Vercel Environment Variables; never commit `.env.local` or production tokens.

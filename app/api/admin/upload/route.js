@@ -1,18 +1,38 @@
 import { NextResponse } from 'next/server';
+import crypto from 'crypto';
 import { put } from '@vercel/blob';
-import { isAuthed } from '../../../../lib/auth';
+import { isAuthed, requestIsSameOrigin } from '../../../../lib/auth';
 export const dynamic = 'force-dynamic';
+export const runtime = 'nodejs';
+
+async function detectImage(bytes) {
+  if (bytes.length >= 8 && bytes.subarray(0, 8).equals(Buffer.from([137,80,78,71,13,10,26,10]))) return 'image/png';
+  if (bytes.length >= 3 && bytes[0] === 0xff && bytes[1] === 0xd8 && bytes[2] === 0xff) return 'image/jpeg';
+  if (bytes.length >= 12 && bytes.toString('ascii', 0, 4) === 'RIFF' && bytes.toString('ascii', 8, 12) === 'WEBP') return 'image/webp';
+  if (bytes.length >= 6 && ['GIF87a', 'GIF89a'].includes(bytes.toString('ascii', 0, 6))) return 'image/gif';
+  if (bytes.length >= 4 && bytes[0] === 0x00 && bytes[1] === 0x00 && bytes[2] === 0x01 && bytes[3] === 0x00) return 'image/x-icon';
+  return null;
+}
 
 export async function POST(req) {
-  if (!isAuthed()) return NextResponse.json({ ok: false, error: 'Not logged in' }, { status: 401 });
-  if (!process.env.BLOB_READ_WRITE_TOKEN) return NextResponse.json({ ok: false, error: 'Vercel Blob is not connected (Storage tab).' }, { status: 500 });
+  if (!requestIsSameOrigin(req)) return NextResponse.json({ ok: false, error: 'Invalid request origin.' }, { status: 403 });
+  if (!isAuthed()) return NextResponse.json({ ok: false, error: 'Not logged in.' }, { status: 401 });
+  if (!process.env.BLOB_READ_WRITE_TOKEN) return NextResponse.json({ ok: false, error: 'Vercel Blob is not connected.' }, { status: 503 });
   try {
-    const f = (await req.formData()).get('file');
-    if (!f || typeof f === 'string') return NextResponse.json({ ok: false, error: 'No file' }, { status: 400 });
-    if (!/^image\/(png|jpeg|webp|gif|x-icon|vnd\.microsoft\.icon)$/.test(f.type)) return NextResponse.json({ ok: false, error: 'Only png, jpg, webp, gif, ico allowed' }, { status: 400 });
-    if (f.size > 4 * 1024 * 1024) return NextResponse.json({ ok: false, error: 'Max 4 MB' }, { status: 400 });
-    const safe = (f.name || 'image').replace(/[^a-zA-Z0-9._-]/g, '_').slice(-60);
-    const b = await put('uploads/' + safe, f, { access: 'public', addRandomSuffix: true });
-    return NextResponse.json({ ok: true, path: b.url });
-  } catch (e) { return NextResponse.json({ ok: false, error: e.message }, { status: 500 }); }
+    const form = await req.formData();
+    const file = form.get('file');
+    if (!file || typeof file === 'string' || typeof file.arrayBuffer !== 'function') return NextResponse.json({ ok: false, error: 'Choose an image file.' }, { status: 400 });
+    if (file.size < 1 || file.size > 4 * 1024 * 1024) return NextResponse.json({ ok: false, error: 'Image must be between 1 byte and 4 MB.' }, { status: 413 });
+    const bytes = Buffer.from(await file.arrayBuffer());
+    const contentType = await detectImage(bytes);
+    if (!contentType) return NextResponse.json({ ok: false, error: 'Unsupported or invalid image file. Use PNG, JPG, WEBP, GIF or ICO.' }, { status: 415 });
+    const ext = ({ 'image/png': 'png', 'image/jpeg': 'jpg', 'image/webp': 'webp', 'image/gif': 'gif', 'image/x-icon': 'ico' })[contentType];
+    const blob = await put(`uploads/${cryptoRandomName()}.${ext}`, new Blob([bytes], { type: contentType }), { access: 'public', addRandomSuffix: true, contentType, cacheControlMaxAge: 31536000 });
+    return NextResponse.json({ ok: true, path: blob.url }, { headers: { 'Cache-Control': 'no-store' } });
+  } catch {
+    return NextResponse.json({ ok: false, error: 'Image upload failed. Please try again.' }, { status: 500 });
+  }
+}
+function cryptoRandomName() {
+  return crypto.randomBytes(16).toString('hex');
 }

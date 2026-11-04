@@ -52,7 +52,7 @@ export async function generateMetadata() {
       images: [{ url: socialImage, width: 1200, height: 630, alt: `${brand} — Property Preservation Back Office Support` }]
     },
     twitter: { card: 'summary_large_image', title, description, images: [socialImage] },
-    icons: s.favicon ? { icon: s.favicon, shortcut: s.favicon } : { icon: '/favicon.png' }
+    icons: { icon: s.favicon || '/favicon.png', shortcut: s.favicon || '/favicon.png', apple: '/apple-touch-icon.png', other: [{ rel: 'manifest', url: '/site.webmanifest' }] }
   };
 }
 

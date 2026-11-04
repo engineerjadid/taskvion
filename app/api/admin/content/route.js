@@ -1,18 +1,35 @@
 import { NextResponse } from 'next/server';
-import { isAuthed } from '../../../../lib/auth';
-import { getContent, saveContent } from '../../../../lib/store';
+import { isAuthed, requestIsSameOrigin } from '../../../../lib/auth';
+import { getContent, saveContent, getContentHistory } from '../../../../lib/store';
+import { validateContent } from '../../../../lib/validation';
 import { revalidatePath } from 'next/cache';
 export const dynamic = 'force-dynamic';
 
-export async function GET() {
-  if (!isAuthed()) return NextResponse.json({ ok: false }, { status: 401 });
-  return NextResponse.json(await getContent());
+const privateHeaders = { 'Cache-Control': 'no-store, no-cache, must-revalidate', 'X-Content-Type-Options': 'nosniff' };
+export async function GET(req) {
+  if (!isAuthed()) return NextResponse.json({ ok: false, error: 'Not logged in.' }, { status: 401, headers: privateHeaders });
+  if (new URL(req.url).searchParams.get('history') === '1') {
+    try { return NextResponse.json(await getContentHistory(), { headers: privateHeaders }); }
+    catch { return NextResponse.json({ ok: false, error: 'Could not load content history.' }, { status: 503, headers: privateHeaders }); }
+  }
+  try { return NextResponse.json(await getContent({ strict: true }), { headers: privateHeaders }); }
+  catch { return NextResponse.json({ ok: false, error: 'Stored content is temporarily unavailable. Please retry; do not restore defaults.' }, { status: 503, headers: privateHeaders }); }
 }
 export async function PUT(req) {
-  if (Number(req.headers.get('content-length') || 0) > 1_000_000) return NextResponse.json({ ok: false, error: 'Content is too large.' }, { status: 413 });
-  if (!isAuthed()) return NextResponse.json({ ok: false, error: 'Not logged in' }, { status: 401 });
-  let d; try { d = await req.json(); } catch (e) { return NextResponse.json({ ok: false, error: 'Bad JSON' }, { status: 400 }); }
-  if (!d || !d.settings || !d.theme || !d.hero || !d.services || !d.contact || !d.nav) return NextResponse.json({ ok: false, error: 'Invalid data' }, { status: 400 });
-  try { await saveContent(d); revalidatePath('/'); } catch (e) { return NextResponse.json({ ok: false, error: e.message }, { status: 500 }); }
-  return NextResponse.json({ ok: true });
+  if (!requestIsSameOrigin(req)) return NextResponse.json({ ok: false, error: 'Invalid request origin.' }, { status: 403, headers: privateHeaders });
+  if (!isAuthed()) return NextResponse.json({ ok: false, error: 'Not logged in.' }, { status: 401, headers: privateHeaders });
+  const length = Number(req.headers.get('content-length') || 0);
+  if (length > 1_000_000) return NextResponse.json({ ok: false, error: 'Content is too large.' }, { status: 413, headers: privateHeaders });
+  let data;
+  try { data = await req.json(); } catch { return NextResponse.json({ ok: false, error: 'Invalid JSON.' }, { status: 400, headers: privateHeaders }); }
+  let safe;
+  try { safe = validateContent(data); }
+  catch (error) { return NextResponse.json({ ok: false, error: error?.message || 'Invalid content.' }, { status: 400, headers: privateHeaders }); }
+  try {
+    await saveContent(safe);
+    revalidatePath('/');
+    return NextResponse.json({ ok: true }, { headers: privateHeaders });
+  } catch {
+    return NextResponse.json({ ok: false, error: 'Could not save content to Redis. Your changes were not published.' }, { status: 503, headers: privateHeaders });
+  }
 }

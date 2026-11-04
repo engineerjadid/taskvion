@@ -1,27 +1,40 @@
 import { NextResponse } from 'next/server';
-import { sign, sameStr, COOKIE } from '../../../../lib/auth';
+import crypto from 'crypto';
+import { sign, sameStr, COOKIE, sessionReady, requestIsSameOrigin } from '../../../../lib/auth';
 import { redis } from '../../../../lib/store';
 export const dynamic = 'force-dynamic';
 
 export async function POST(req) {
-  const u = process.env.ADMIN_USER, p = process.env.ADMIN_PASSWORD;
-  if (!u || !p) return NextResponse.json({ ok: false, error: 'ADMIN_USER / ADMIN_PASSWORD are not set in Vercel Environment Variables.' }, { status: 500 });
-  const ip = (req.headers.get('x-forwarded-for') || 'x').split(',')[0].trim();
+  if (!requestIsSameOrigin(req)) return NextResponse.json({ ok: false, error: 'Invalid request origin.' }, { status: 403 });
+  const username = process.env.ADMIN_USER;
+  const password = process.env.ADMIN_PASSWORD;
+  if (!username || !password) return NextResponse.json({ ok: false, error: 'Admin credentials are not configured.' }, { status: 503 });
+  if (!sessionReady()) return NextResponse.json({ ok: false, error: 'Set SESSION_SECRET to a random value of at least 32 characters in Vercel.' }, { status: 503 });
+  let body;
+  try {
+    if (Number(req.headers.get('content-length') || 0) > 4000) return NextResponse.json({ ok: false, error: 'Request is too large.' }, { status: 413 });
+    body = await req.json();
+  } catch {
+    return NextResponse.json({ ok: false, error: 'Invalid request.' }, { status: 400 });
+  }
+  if (!body || typeof body.user !== 'string' || typeof body.password !== 'string' || body.user.length > 200 || body.password.length > 500) {
+    return NextResponse.json({ ok: false, error: 'Enter a valid username and password.' }, { status: 400 });
+  }
+  const ip = req.headers.get('x-real-ip') || (req.headers.get('x-forwarded-for') || 'unknown').split(',')[0].trim();
+  const ipKey = crypto.createHash('sha256').update(ip).digest('hex').slice(0, 32);
   try {
     const r = redis();
-    if (!r) return NextResponse.json({ ok: false, error: 'Admin login is unavailable until Upstash Redis is connected.' }, { status: 503 });
-    const trustedIp = req.headers.get('x-real-ip') || ip;
-    const k = 'rl:login:' + trustedIp;
-    const n = await r.incr(k);
-    if (n === 1) await r.expire(k, 900);
-    if (n > 8) return NextResponse.json({ ok: false, error: 'Too many attempts. Try again in 15 minutes.' }, { status: 429 });
-  } catch (e) {
-    return NextResponse.json({ ok: false, error: 'Admin login is temporarily unavailable. Please try again later.' }, { status: 503 });
+    if (!r) return NextResponse.json({ ok: false, error: 'Admin login is unavailable until Redis is connected.' }, { status: 503 });
+    const key = `rl:login:${ipKey}`;
+    const attempts = await r.incr(key);
+    if (attempts === 1) await r.expire(key, 900);
+    if (attempts > 8) return NextResponse.json({ ok: false, error: 'Too many attempts. Try again in 15 minutes.' }, { status: 429 });
+  } catch {
+    return NextResponse.json({ ok: false, error: 'Login protection is temporarily unavailable. Please try again later.' }, { status: 503 });
   }
-  let b = {}; try { b = await req.json(); } catch (e) {}
-  const okU = sameStr(b.user || '', u), okP = sameStr(b.password || '', p);
-  if (!(okU && okP)) return NextResponse.json({ ok: false, error: 'Wrong username or password.' }, { status: 401 });
-  const res = NextResponse.json({ ok: true });
-  res.cookies.set('tv_admin', sign(Date.now() + COOKIE.maxAge * 1000), COOKIE);
-  return res;
+  const valid = sameStr(body.user, username) && sameStr(body.password, password);
+  if (!valid) return NextResponse.json({ ok: false, error: 'Wrong username or password.' }, { status: 401 });
+  const response = NextResponse.json({ ok: true }, { headers: { 'Cache-Control': 'no-store' } });
+  response.cookies.set('tv_admin', sign(Date.now() + COOKIE.maxAge * 1000), COOKIE);
+  return response;
 }

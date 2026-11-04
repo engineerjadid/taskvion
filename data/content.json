@@ -384,7 +384,12 @@
     "platforms": "",
     "points": "",
     "features": "",
-    "options": ""
+    "options": "",
+    "items": {
+      "name": "",
+      "role": "",
+      "text": ""
+    }
   },
   "privacy": {
     "show": true,
