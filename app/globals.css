@@ -199,9 +199,8 @@ footer{background:radial-gradient(ellipse at 80% 0%,rgba(21,101,190,.22),transpa
 html{-webkit-text-size-adjust:100%;text-size-adjust:100%;overflow-x:hidden}
 main{overflow-x:clip}
 img,svg,video{max-width:100%}
-h1,h2,h3,.lead,.card,.panel,details,.fg a,#contact a{overflow-wrap:anywhere}
-.grid{grid-template-columns:repeat(auto-fit,minmax(min(250px,100%),1fr))}
-.about-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+h1,h2,h3,.lead,.card,.panel,details,.fg a,#contact a{overflow-wrap:break-word}
+.grid:not(.about-grid){grid-template-columns:repeat(auto-fit,minmax(min(250px,100%),1fr))}
 .wa{bottom:calc(18px + env(safe-area-inset-bottom,0px));right:calc(18px + env(safe-area-inset-right,0px))}
 nav{white-space:nowrap}
 .ok{flex-wrap:wrap;gap:6px 14px}
