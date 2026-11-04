@@ -4,6 +4,8 @@ import { siteUrl } from '../lib/site';
 
 export const dynamic = 'force-dynamic';
 
+export const viewport = { width: 'device-width', initialScale: 1, viewportFit: 'cover', themeColor: '#ffffff' };
+
 const safeJsonLd = (value) => JSON.stringify(value).replace(/</g, '\\u003c');
 
 export async function generateMetadata() {
@@ -82,7 +84,7 @@ export default async function RootLayout({ children }) {
       ...(absoluteAsset(s.logoFull || s.logoIcon || '/logo-full.png', base) ? { logo: absoluteAsset(s.logoFull || s.logoIcon || '/logo-full.png', base) } : {}),
       ...(s.email && !/yourdomain\.com|example\.com/i.test(s.email) ? { email: s.email } : {}),
       ...(s.phone ? { telephone: s.phone } : {}),
-      ...(s.address ? { address: { '@type': 'PostalAddress', addressLocality: s.address, addressCountry: 'BD' } } : {}),
+      ...(s.address ? { address: { '@type': 'PostalAddress', addressLocality: String(s.address).split(',')[0].trim(), addressCountry: 'BD' } } : {}),
       sameAs: [s.linkedin, s.facebook].filter(validHttpUrl)
     },
     {

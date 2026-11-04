@@ -16,7 +16,7 @@ export async function POST(req) {
   const email = cut(body.email, 150).toLowerCase();
   const message = cut(body.message, 3000);
   const service = cut(body.service, 100);
-  if (!name || !service || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+  if (!name || !service || !/^[^\s@?&#%<>"',;]+@[^\s@?&#%<>"',;]+\.[^\s@?&#%<>"',;]+$/.test(email)) {
     return NextResponse.json({ ok: false, message: 'Please fill in your name, a valid email and service.' }, { status: 400, headers: responseHeaders });
   }
   if (/[\u0000-\u0008\u000B\u000C\u000E-\u001F]/.test(name + email + service + message)) return NextResponse.json({ ok: false, message: 'Please remove unsupported characters.' }, { status: 400, headers: responseHeaders });
@@ -28,14 +28,17 @@ export async function POST(req) {
     const ip = req.headers.get('x-real-ip') || (req.headers.get('x-forwarded-for') || 'unknown').split(',')[0].trim();
     const ipHash = crypto.createHash('sha256').update(ip).digest('hex').slice(0, 32);
     const key = `rl:msg:${ipHash}`;
+    await store.set(key, 0, { ex: 600, nx: true });
     const count = await store.incr(key);
-    if (count === 1) await store.expire(key, 600);
     if (count > 5) return NextResponse.json({ ok: false, message: 'Too many messages. Please try again later.' }, { status: 429, headers: responseHeaders });
+
+    const content = await getContent();
+    const options = Array.isArray(content.contact?.options) ? content.contact.options : [];
+    if (options.length && !options.includes(service)) return NextResponse.json({ ok: false, message: 'Please choose a service from the list.' }, { status: 400, headers: responseHeaders });
 
     const messages = await getMessages();
     messages.unshift({ id: crypto.randomBytes(6).toString('hex'), ts: Math.floor(Date.now() / 1000), name, email, service, message, read: false });
     await saveMessages(messages.slice(0, 1000));
-    const content = await getContent();
     return NextResponse.json({ ok: true, message: content.contact?.successMessage || 'Thank you! Your message has been received.' }, { headers: responseHeaders });
   } catch {
     return NextResponse.json({ ok: false, message: 'Could not save your message. Please email us directly.' }, { status: 503, headers: responseHeaders });

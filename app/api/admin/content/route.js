@@ -27,7 +27,8 @@ export async function PUT(req) {
   catch (error) { return NextResponse.json({ ok: false, error: error?.message || 'Invalid content.' }, { status: 400, headers: privateHeaders }); }
   try {
     await saveContent(safe);
-    revalidatePath('/');
+    revalidatePath('/', 'layout');
+    revalidatePath('/privacy');
     return NextResponse.json({ ok: true }, { headers: privateHeaders });
   } catch {
     return NextResponse.json({ ok: false, error: 'Could not save content to Redis. Your changes were not published.' }, { status: 503, headers: privateHeaders });
