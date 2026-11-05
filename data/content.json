@@ -131,39 +131,52 @@
         "name": "MCS",
         "completed": 0,
         "pending": 0,
-        "note": ""
+        "note": "",
+        "autoCount": true,
+        "jobs": []
       },
       {
         "name": "NFR",
         "completed": 0,
         "pending": 0,
-        "note": ""
+        "note": "",
+        "autoCount": true,
+        "jobs": []
       },
       {
         "name": "ServiceLink",
         "completed": 0,
         "pending": 0,
-        "note": ""
+        "note": "",
+        "autoCount": true,
+        "jobs": []
       },
       {
         "name": "SingleSource",
         "completed": 0,
         "pending": 0,
-        "note": ""
+        "note": "",
+        "autoCount": true,
+        "jobs": []
       },
       {
         "name": "Safeguard Properties",
         "completed": 0,
         "pending": 0,
-        "note": ""
+        "note": "",
+        "autoCount": true,
+        "jobs": []
       },
       {
         "name": "ZVN",
         "completed": 0,
         "pending": 0,
-        "note": ""
+        "note": "",
+        "autoCount": true,
+        "jobs": []
       }
-    ]
+    ],
+    "showRevenue": true
   },
   "services": {
     "show": true,
@@ -436,6 +449,15 @@
       "name": "",
       "role": "",
       "text": ""
+    },
+    "jobs": {
+      "date": "",
+      "type": "",
+      "llc": "",
+      "location": "",
+      "revenue": 0,
+      "completed": false,
+      "note": ""
     }
   },
   "privacy": {

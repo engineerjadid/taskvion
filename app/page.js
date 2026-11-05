@@ -2,6 +2,7 @@ import { getContent } from '../lib/store';
 import ContactForm from '../components/ContactForm';
 import Header from '../components/Header';
 import WorkStatus from '../components/WorkStatus';
+import { normalizeWork } from '../lib/workstatus';
 
 export const dynamic = 'force-dynamic';
 const href = (u) => { const v = String(u || '').trim(); return /^(https?:\/\/|mailto:|tel:|#|\/(?!\/))/i.test(v) ? v : '#'; };
@@ -25,6 +26,8 @@ export default async function Home() {
   const s = c.settings || {}, h = c.hero || {}, ct = c.contact || {};
   const wa = String(s.whatsapp || '').replace(/\D/g, '');
   const pn = h.panel || {};
+  const wsData = normalizeWork(c.workStatus);
+  if (!wsData.showRevenue) wsData.items = wsData.items.map((x) => ({ ...x, revenue: 0, jobs: x.jobs.map((j) => ({ ...j, revenue: 0 })) }));
   return (
     <>
       <Header
@@ -68,7 +71,7 @@ export default async function Home() {
         {c.workStatus && c.workStatus.show && arr(c.workStatus.items).length ? (
           <section id="work" aria-label="Live work status"><div className="w">
             <Head sec={c.workStatus} />
-            <WorkStatus initialItems={arr(c.workStatus.items)} initialUpdatedAt={c.workStatus.updatedAt} refreshSeconds={c.workStatus.refreshSeconds} />
+            <WorkStatus initial={wsData} />
           </div></section>
         ) : null}
 
