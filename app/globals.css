@@ -233,3 +233,20 @@ form.c{margin-top:22px;border-radius:14px}
 .brand b{font-size:17px}.brand small{display:none}
 h1{font-size:34px}.card,.service-card,.about-card{padding:18px}
 .stats b{font-size:18px}.stats>div,.stats>div:first-child{padding:0 6px}}
+
+/* Live work status */
+.ws-total{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:0 0 20px}
+.ws-total>div{background:#fff;border:1px solid var(--br);border-radius:16px;padding:16px;text-align:center}
+.ws-total b{display:block;font-size:28px;color:var(--d)}.ws-total span{font-size:12px;color:var(--mut)}
+.ws-card h3{margin:0 0 12px}
+.ws-nums{display:flex;gap:28px;margin-bottom:12px}
+.ws-nums b{display:block;font-size:30px;line-height:1}.ws-nums span{font-size:12px;color:var(--mut)}
+.ws-done{color:#15803d}.ws-pend{color:#b45309}
+.ws-bar{height:8px;border-radius:99px;background:var(--br);overflow:hidden}
+.ws-bar i{display:block;height:100%;background:#15803d;border-radius:99px;transition:width .6s ease}
+.ws-pct{font-size:12px;color:var(--mut);margin-top:6px}.ws-note{font-size:13px;margin:10px 0 0}
+.ws-live{display:flex;align-items:center;gap:8px;justify-content:center;font-size:12px;color:var(--mut);margin:20px 0 0}
+.ws-dot{width:8px;height:8px;border-radius:50%;background:#22c55e;animation:wsp 1.6s ease-in-out infinite}
+@keyframes wsp{50%{opacity:.35}}
+@media(prefers-reduced-motion:reduce){.ws-dot{animation:none}.ws-bar i{transition:none}}
+@media(max-width:520px){.ws-total b{font-size:22px}.ws-total>div{padding:12px 6px}}

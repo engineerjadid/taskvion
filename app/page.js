@@ -1,6 +1,7 @@
 import { getContent } from '../lib/store';
 import ContactForm from '../components/ContactForm';
 import Header from '../components/Header';
+import WorkStatus from '../components/WorkStatus';
 
 export const dynamic = 'force-dynamic';
 const href = (u) => { const v = String(u || '').trim(); return /^(https?:\/\/|mailto:|tel:|#|\/(?!\/))/i.test(v) ? v : '#'; };
@@ -62,6 +63,13 @@ export default async function Home() {
               <div key={n} aria-hidden={n === 1}>{[0, 1, 2].map((r) => c.platforms.items.map((x, i) => <b key={r + '-' + i}>{x}</b>))}</div>
             ))}
           </div></div></div>
+        ) : null}
+
+        {c.workStatus && c.workStatus.show && arr(c.workStatus.items).length ? (
+          <section id="work" aria-label="Live work status"><div className="w">
+            <Head sec={c.workStatus} />
+            <WorkStatus initialItems={arr(c.workStatus.items)} initialUpdatedAt={c.workStatus.updatedAt} refreshSeconds={c.workStatus.refreshSeconds} />
+          </div></section>
         ) : null}
 
         {c.about && c.about.show ? (

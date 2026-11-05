@@ -118,6 +118,53 @@
       "ServiceBench"
     ]
   },
+  "workStatus": {
+    "show": false,
+    "label": "LIVE WORK STATUS",
+    "title": "Our work,",
+    "titleAccent": "updated live",
+    "subtitle": "A transparent look at completed and pending work across the platforms we support.",
+    "updatedAt": "",
+    "refreshSeconds": 30,
+    "items": [
+      {
+        "name": "MCS",
+        "completed": 0,
+        "pending": 0,
+        "note": ""
+      },
+      {
+        "name": "NFR",
+        "completed": 0,
+        "pending": 0,
+        "note": ""
+      },
+      {
+        "name": "ServiceLink",
+        "completed": 0,
+        "pending": 0,
+        "note": ""
+      },
+      {
+        "name": "SingleSource",
+        "completed": 0,
+        "pending": 0,
+        "note": ""
+      },
+      {
+        "name": "Safeguard Properties",
+        "completed": 0,
+        "pending": 0,
+        "note": ""
+      },
+      {
+        "name": "ZVN",
+        "completed": 0,
+        "pending": 0,
+        "note": ""
+      }
+    ]
+  },
   "services": {
     "show": true,
     "label": "OUR SERVICES",
