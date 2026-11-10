@@ -2,6 +2,7 @@ import { getContent } from '../lib/store';
 import ContactForm from '../components/ContactForm';
 import Header from '../components/Header';
 import WorkStatus from '../components/WorkStatus';
+import WorkOrders from '../components/WorkOrders';
 import { normalizeWork } from '../lib/workstatus';
 
 export const dynamic = 'force-dynamic';
@@ -50,15 +51,10 @@ export default async function Home() {
             </p>
             <div className="stats">{arr(h.stats).map((x, i) => <div key={i}><b>{x.value}</b><span>{x.label}</span></div>)}</div>
           </div>
-          {h.panelShow ? (
-            <div className="panel">
-              <span className="pill">{pn.tag}</span>
-              <h3 style={{ fontWeight: 500, fontSize: 22, margin: '14px 0 6px' }}>{pn.title}</h3>
-              {arr(pn.items).map((i, k) => <div className="chk" key={k}><i>✓</i><div><b>{i.title}</b><br /><span className="mut">{i.desc}</span></div></div>)}
-              <div className="ok"><span>{pn.footerLeft}</span><span>● {pn.footerRight}</span></div>
-            </div>
-          ) : null}
+
         </div>
+
+        {c.workOrders && c.workOrders.show ? <WorkOrders data={c.workOrders} /> : null}
 
         {c.platforms && c.platforms.show && arr(c.platforms.items).length ? (
           <div className="plat" aria-label="Platforms and workflows"><div className="platform-caption">WORKFLOW EXPERIENCE ACROSS PLATFORMS</div><div className="marq"><div className="track">
