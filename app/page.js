@@ -52,9 +52,8 @@ export default async function Home() {
             <div className="stats">{arr(h.stats).map((x, i) => <div key={i}><b>{x.value}</b><span>{x.label}</span></div>)}</div>
           </div>
 
+          {c.workOrders && c.workOrders.show ? <WorkOrders data={c.workOrders} /> : null}
         </div>
-
-        {c.workOrders && c.workOrders.show ? <WorkOrders data={c.workOrders} /> : null}
 
         {c.platforms && c.platforms.show && arr(c.platforms.items).length ? (
           <div className="plat" aria-label="Platforms and workflows"><div className="platform-caption">WORKFLOW EXPERIENCE ACROSS PLATFORMS</div><div className="marq"><div className="track">

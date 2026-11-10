@@ -309,3 +309,45 @@ button.ws-card:focus-visible{outline:3px solid var(--p);outline-offset:2px}
 .portfolio-lightbox{position:fixed;inset:0;z-index:120;background:rgba(2,15,36,.92);display:flex;align-items:center;justify-content:center;flex-direction:column;padding:50px 20px 24px}.portfolio-lightbox img{max-width:min(1100px,100%);max-height:80vh;object-fit:contain;border-radius:8px}.portfolio-lightbox p{color:#fff;margin:12px 0 0}.portfolio-lightbox-close{position:absolute;top:18px;right:22px;border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.12);color:#fff;border-radius:50%;width:42px;height:42px;font-size:28px;cursor:pointer}
 @media(max-width:850px){.portfolio-grid,.portfolio-photos{grid-template-columns:repeat(2,minmax(0,1fr))}.portfolio-cover{height:175px}}
 @media(max-width:560px){.portfolio-section{padding:54px 0}.portfolio-grid,.portfolio-photos{grid-template-columns:1fr}.portfolio-cover{height:205px}.portfolio-photo img{height:240px}.portfolio-gallery-head{align-items:flex-start}.hero{padding-top:48px;padding-bottom:50px}}
+
+/* Place the work-order portfolio in the right-hand hero column */
+.hero>.portfolio-section{
+  width:100%;
+  min-width:0;
+  align-self:center;
+  box-sizing:border-box;
+  padding:0;
+  border:0;
+  background:transparent;
+}
+.hero>.portfolio-section .w{
+  max-width:none;
+  padding:0;
+}
+.hero>.portfolio-section .lbl{font-size:10px}
+.hero>.portfolio-section h2{font-size:clamp(24px,2.6vw,34px);margin:7px 0 9px}
+.hero>.portfolio-section .sub{font-size:13px;line-height:1.65;margin-bottom:16px}
+.hero>.portfolio-section .portfolio-grid{
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+  margin-top:18px;
+}
+.hero>.portfolio-section .portfolio-cover{height:105px}
+.hero>.portfolio-section .portfolio-placeholder span{font-size:38px}
+.hero>.portfolio-section .portfolio-cat-text{padding:12px 13px 14px}
+.hero>.portfolio-section .portfolio-cat-text h3{font-size:15px}
+.hero>.portfolio-section .portfolio-cat-text p{font-size:11px;line-height:1.5}
+.hero>.portfolio-section .portfolio-link{font-size:11px;margin-top:9px}
+.hero>.portfolio-section .portfolio-count{font-size:9px;padding:4px 7px}
+.hero>.portfolio-section .portfolio-gallery-wrap{margin-top:16px}
+.hero>.portfolio-section .portfolio-photos{grid-template-columns:repeat(2,minmax(0,1fr))}
+.hero>.portfolio-section .portfolio-photo img{height:145px}
+@media(max-width:820px){
+  .hero>.portfolio-section{padding-top:8px}
+  .hero>.portfolio-section .portfolio-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:560px){
+  .hero>.portfolio-section .portfolio-grid,
+  .hero>.portfolio-section .portfolio-photos{grid-template-columns:1fr}
+  .hero>.portfolio-section .portfolio-cover{height:160px}
+}
