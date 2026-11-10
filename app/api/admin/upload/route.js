@@ -1,8 +1,6 @@
 import { NextResponse } from 'next/server';
 import crypto from 'crypto';
 import { put } from '@vercel/blob';
-import { getContent } from '../../../../lib/store';
-import { isOwnBlob, deleteBlobs } from '../../../../lib/blob';
 import { isAuthed, requestIsSameOrigin } from '../../../../lib/auth';
 export const dynamic = 'force-dynamic';
 export const runtime = 'nodejs';
@@ -33,22 +31,6 @@ export async function POST(req) {
     return NextResponse.json({ ok: true, path: blob.url }, { headers: { 'Cache-Control': 'no-store' } });
   } catch {
     return NextResponse.json({ ok: false, error: 'Image upload failed. Please try again.' }, { status: 500 });
-  }
-}
-// Deletes an uploaded image that was never saved to the website (for example a photo removed before clicking Save).
-// Images used by the live website content are refused.
-export async function DELETE(req) {
-  if (!requestIsSameOrigin(req)) return NextResponse.json({ ok: false, error: 'Invalid request origin.' }, { status: 403 });
-  if (!isAuthed()) return NextResponse.json({ ok: false, error: 'Not logged in.' }, { status: 401 });
-  try {
-    const { url } = await req.json();
-    if (typeof url !== 'string' || !isOwnBlob(url)) return NextResponse.json({ ok: false, error: 'Invalid image.' }, { status: 400 });
-    const live = JSON.stringify(await getContent({ strict: true }));
-    if (live.includes(url)) return NextResponse.json({ ok: false, error: 'Image is in use.' }, { status: 409 });
-    await deleteBlobs([url]);
-    return NextResponse.json({ ok: true });
-  } catch {
-    return NextResponse.json({ ok: false, error: 'Could not delete image.' }, { status: 500 });
   }
 }
 function cryptoRandomName() {

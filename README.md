@@ -48,8 +48,3 @@ The default canonical origin is `https://www.taskvionit.com`. Preview deployment
 - Rate-limit keys are created with a TTL atomically; successful admin login clears the counter.
 - Added `.gitignore`, Content-Security-Policy, `X-Frame-Options: DENY`.
 - Content save revalidates the layout and `/privacy`.
-
-## Work Orders section (hero side card)
-- Replaces the old workflow card. Work types and their completed-job photos are managed in Admin → Work Orders (see `ADMIN-CMS-GUIDE.md`).
-- Visitors click a work type to see its photo gallery, then click a photo for a large view (keyboard arrows and Esc work).
-- Removing a photo/type and saving deletes the image from Vercel Blob and from the stored content and version history. Requires `BLOB_READ_WRITE_TOKEN` (already needed for uploads).
