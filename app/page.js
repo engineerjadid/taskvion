@@ -2,6 +2,7 @@ import { getContent } from '../lib/store';
 import ContactForm from '../components/ContactForm';
 import Header from '../components/Header';
 import WorkStatus from '../components/WorkStatus';
+import WorkOrders from '../components/WorkOrders';
 import { normalizeWork } from '../lib/workstatus';
 
 export const dynamic = 'force-dynamic';
@@ -25,7 +26,11 @@ export default async function Home() {
   const c = await getContent();
   const s = c.settings || {}, h = c.hero || {}, ct = c.contact || {};
   const wa = String(s.whatsapp || '').replace(/\D/g, '');
-  const pn = h.panel || {};
+  const wo = c.workOrders || {};
+  const woTypes = arr(wo.types).filter((t) => t && String(t.name || '').trim()).map((t) => ({
+    name: String(t.name), desc: String(t.desc || ''),
+    photos: arr(t.photos).filter((p) => p && typeof p.image === 'string' && /^(https:\/\/|\/(?!\/))/i.test(p.image)).map((p) => ({ image: p.image, caption: String(p.caption || '') })),
+  }));
   const wsData = normalizeWork(c.workStatus);
   if (!wsData.showRevenue) wsData.items = wsData.items.map((x) => ({ ...x, revenue: 0, jobs: x.jobs.map((j) => ({ ...j, revenue: 0 })) }));
   return (
@@ -50,13 +55,8 @@ export default async function Home() {
             </p>
             <div className="stats">{arr(h.stats).map((x, i) => <div key={i}><b>{x.value}</b><span>{x.label}</span></div>)}</div>
           </div>
-          {h.panelShow ? (
-            <div className="panel">
-              <span className="pill">{pn.tag}</span>
-              <h3 style={{ fontWeight: 500, fontSize: 22, margin: '14px 0 6px' }}>{pn.title}</h3>
-              {arr(pn.items).map((i, k) => <div className="chk" key={k}><i>✓</i><div><b>{i.title}</b><br /><span className="mut">{i.desc}</span></div></div>)}
-              <div className="ok"><span>{pn.footerLeft}</span><span>● {pn.footerRight}</span></div>
-            </div>
+          {wo.show && woTypes.length ? (
+            <WorkOrders tag={wo.tag} title={wo.title} hint={wo.hint} footerLeft={wo.footerLeft} footerRight={wo.footerRight} types={woTypes} />
           ) : null}
         </div>
 
