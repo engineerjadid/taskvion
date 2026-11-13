@@ -80,7 +80,7 @@
         "label": "Back-office services"
       }
     ],
-    "panelShow": false,
+    "panelShow": true,
     "panel": {
       "tag": "OUR WORKFLOW",
       "title": "From work order to submission",
@@ -458,11 +458,6 @@
       "revenue": 0,
       "completed": false,
       "note": ""
-    },
-    "photos": {
-      "image": "",
-      "alt": "",
-      "caption": ""
     }
   },
   "privacy": {
@@ -538,50 +533,5 @@
       }
     ],
     "note": "Service scope, platform access, turnaround expectations and information-handling procedures are agreed before engagement."
-  },
-  "workOrders": {
-    "show": true,
-    "label": "OUR COMPLETED WORK",
-    "title": "Work Order",
-    "titleAccent": "Portfolio",
-    "subtitle": "Explore completed property preservation work by service type. Select a category to view project photos.",
-    "categories": [
-      {
-        "name": "Grass Cut",
-        "description": "View completed grass cut projects.",
-        "photos": [],
-        "photoCover": ""
-      },
-      {
-        "name": "Winterization",
-        "description": "View completed winterization projects.",
-        "photos": [],
-        "photoCover": ""
-      },
-      {
-        "name": "Re-secure",
-        "description": "View completed re-secure projects.",
-        "photos": [],
-        "photoCover": ""
-      },
-      {
-        "name": "Snow Remove",
-        "description": "View completed snow remove projects.",
-        "photos": [],
-        "photoCover": ""
-      },
-      {
-        "name": "Junk Remove",
-        "description": "View completed junk remove projects.",
-        "photos": [],
-        "photoCover": ""
-      },
-      {
-        "name": "Lawn Remove",
-        "description": "View completed lawn remove projects.",
-        "photos": [],
-        "photoCover": ""
-      }
-    ]
   }
 }
