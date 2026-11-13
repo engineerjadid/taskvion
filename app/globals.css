@@ -356,3 +356,34 @@ button.wo-ph span{padding:8px 10px;font-size:12px;color:var(--mut)}
 }
 /* Tablet: card is full width, so show 3 tiles per row */
 @media(min-width:521px) and (max-width:820px){.wo-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.wo-vis{aspect-ratio:4/3}}
+
+/* ===== Motion: hero entrance, scroll reveal, button shine, card glow ===== */
+@keyframes heroUp{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+@keyframes heroSide{from{opacity:0;transform:translateX(44px) scale(.97)}to{opacity:1;transform:none}}
+.hero>div:first-child>*{animation:heroUp .85s cubic-bezier(.2,.7,.2,1) both}
+.hero>div:first-child>:nth-child(1){animation-delay:.05s}
+.hero>div:first-child>:nth-child(2){animation-delay:.16s}
+.hero>div:first-child>:nth-child(3){animation-delay:.28s}
+.hero>div:first-child>:nth-child(4){animation-delay:.4s}
+.hero>div:first-child>:nth-child(5){animation-delay:.52s}
+.hero>.panel{animation:heroSide .95s cubic-bezier(.2,.7,.2,1) .3s both}
+.stats b{font-variant-numeric:tabular-nums}
+
+/* scroll reveal (classes are added by lib/motion.js only to elements below the fold) */
+html.js-motion main .rv{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0ms);will-change:opacity,transform}
+html.js-motion main .rv.in{opacity:1;transform:none}
+
+/* button shine */
+.btn{position:relative;overflow:hidden;isolation:isolate}
+.btn:after{content:"";position:absolute;top:0;bottom:0;left:-70%;width:45%;z-index:-1;background:linear-gradient(105deg,transparent,rgba(255,255,255,.5),transparent);transform:skewX(-20deg);transition:left .7s ease;pointer-events:none}
+.btn:hover:after{left:130%}
+.btn.o:after{background:linear-gradient(105deg,transparent,rgba(0,128,253,.16),transparent)}
+.btn:active{transform:translateY(0) scale(.98)}
+
+/* card glow: soft border glow + spotlight following the pointer */
+.card{background-image:radial-gradient(240px circle at var(--mx,50%) var(--my,0%),transparent,transparent)}
+@media(hover:hover) and (pointer:fine){
+ section:not(.dark) .card:hover{border-color:#8fc2fb;background-image:radial-gradient(260px circle at var(--mx,50%) var(--my,50%),rgba(0,128,253,.10),transparent 62%);box-shadow:0 0 0 1px rgba(0,128,253,.14),0 26px 50px -28px rgba(0,112,255,.6)}
+ .dark .card:hover{border-color:rgba(117,183,255,.6);background-image:radial-gradient(260px circle at var(--mx,50%) var(--my,50%),rgba(79,176,255,.18),transparent 62%);box-shadow:0 0 0 1px rgba(79,176,255,.2),0 24px 50px -28px rgba(0,128,253,.7)}
+}
+button.wo-type:hover,button.ws-card:hover{box-shadow:0 0 0 1px rgba(0,128,253,.16),0 22px 44px -24px rgba(0,112,255,.55)}

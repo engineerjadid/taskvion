@@ -53,3 +53,8 @@ The default canonical origin is `https://www.taskvionit.com`. Preview deployment
 - Replaces the old workflow card. Work types and their completed-job photos are managed in Admin → Work Orders (see `ADMIN-CMS-GUIDE.md`).
 - Visitors click a work type to see its photo gallery, then click a photo for a large view (keyboard arrows and Esc work).
 - Removing a photo/type and saving deletes the image from Vercel Blob and from the stored content and version history. Requires `BLOB_READ_WRITE_TOKEN` (already needed for uploads).
+
+## Animations
+- Hero entrance, scroll fade-in, hero stat count-up, button shine and card glow. Styles are at the end of `app/globals.css`; scroll/counter logic is in `lib/motion.js` (started by `components/MotionEffects.js`).
+- All motion is skipped for visitors who enable "reduce motion" in their device settings.
+- To stop the count-up for a stat, keep its value non-numeric or below 2 (for example `QC`).

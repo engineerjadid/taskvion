@@ -3,6 +3,7 @@ import ContactForm from '../components/ContactForm';
 import Header from '../components/Header';
 import WorkStatus from '../components/WorkStatus';
 import WorkOrders from '../components/WorkOrders';
+import MotionEffects from '../components/MotionEffects';
 import { normalizeWork } from '../lib/workstatus';
 
 export const dynamic = 'force-dynamic';
@@ -35,6 +36,7 @@ export default async function Home() {
   if (!wsData.showRevenue) wsData.items = wsData.items.map((x) => ({ ...x, revenue: 0, jobs: x.jobs.map((j) => ({ ...j, revenue: 0 })) }));
   return (
     <>
+      <MotionEffects />
       <Header
         brandName={s.brandName}
         brandSub={s.brandSub}
