@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { isAuthed, requestIsSameOrigin } from '../../../../lib/auth';
-import { getContent, saveContent, getContentHistory } from '../../../../lib/store';
+import { getContent, saveContent, getContentHistory, scrubHistory } from '../../../../lib/store';
+import { photoUrls, deleteBlobs } from '../../../../lib/blob';
 import { validateContent } from '../../../../lib/validation';
 import { revalidatePath } from 'next/cache';
 export const dynamic = 'force-dynamic';
@@ -26,10 +27,22 @@ export async function PUT(req) {
   try { safe = validateContent(data); }
   catch (error) { return NextResponse.json({ ok: false, error: error?.message || 'Invalid content.' }, { status: 400, headers: privateHeaders }); }
   try {
+    let before = null;
+    try { before = await getContent({ strict: true }); } catch { before = null; }
     await saveContent(safe);
     revalidatePath('/', 'layout');
     revalidatePath('/privacy');
-    return NextResponse.json({ ok: true }, { headers: privateHeaders });
+    // Work Order photos that were removed in this save are deleted from Blob storage and from saved history.
+    let deleted = 0, warning = '';
+    if (before) {
+      const keep = JSON.stringify(safe);
+      const removed = new Set([...photoUrls(before)].filter((u) => !photoUrls(safe).has(u) && !keep.includes(u)));
+      if (removed.size) {
+        try { deleted = await deleteBlobs(removed); await scrubHistory(removed); }
+        catch { warning = 'Saved, but some removed photos could not be deleted from storage.'; }
+      }
+    }
+    return NextResponse.json({ ok: true, deleted, warning }, { headers: privateHeaders });
   } catch {
     return NextResponse.json({ ok: false, error: 'Could not save content to Redis. Your changes were not published.' }, { status: 503, headers: privateHeaders });
   }

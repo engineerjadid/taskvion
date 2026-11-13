@@ -79,32 +79,47 @@
         "value": "BPO",
         "label": "Back-office services"
       }
-    ],
-    "panelShow": true,
-    "panel": {
-      "tag": "OUR WORKFLOW",
-      "title": "From work order to submission",
-      "items": [
-        {
-          "title": "Intake and organize",
-          "desc": "Capture work scope, instructions and due dates"
-        },
-        {
-          "title": "Process and review",
-          "desc": "Check details against the requirements provided"
-        },
-        {
-          "title": "Prepare documentation",
-          "desc": "Organize photos, reports, bids and invoices"
-        },
-        {
-          "title": "Track and communicate",
-          "desc": "Monitor status and flag pending items"
-        }
-      ],
-      "footerLeft": "Process-led support",
-      "footerRight": "Deadline aware"
-    }
+    ]
+  },
+  "workOrders": {
+    "show": true,
+    "tag": "WORK ORDERS",
+    "title": "Types of work we handle",
+    "hint": "Tap a work type to see photos of completed jobs.",
+    "footerLeft": "Real completed work",
+    "footerRight": "Photo documented",
+    "types": [
+      {
+        "name": "Grass Cut",
+        "desc": "",
+        "photos": []
+      },
+      {
+        "name": "Winterization",
+        "desc": "",
+        "photos": []
+      },
+      {
+        "name": "Re-secure",
+        "desc": "",
+        "photos": []
+      },
+      {
+        "name": "Snow Remove",
+        "desc": "",
+        "photos": []
+      },
+      {
+        "name": "Junk Remove",
+        "desc": "",
+        "photos": []
+      },
+      {
+        "name": "Lawn Remove",
+        "desc": "",
+        "photos": []
+      }
+    ]
   },
   "platforms": {
     "show": true,
@@ -458,6 +473,15 @@
       "revenue": 0,
       "completed": false,
       "note": ""
+    },
+    "photos": {
+      "image": "",
+      "caption": ""
+    },
+    "types": {
+      "name": "",
+      "desc": "",
+      "photos": []
     }
   },
   "privacy": {

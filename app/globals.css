@@ -287,3 +287,31 @@ button.ws-card:focus-visible{outline:3px solid var(--p);outline-offset:2px}
  .ws-table td:before{content:attr(data-l);font-size:12px;font-weight:700;color:var(--mut);text-align:left}
  .ws-table .r{text-align:right}
 }
+
+/* Work Orders (hero side card): type grid + photo gallery */
+.wo-title{font-weight:500;font-size:22px;margin:14px 0 4px}
+.wo-hint{font-size:13px;margin:0 0 14px}
+.wo-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+button.wo-type{display:grid;grid-template-columns:44px 1fr;grid-template-areas:"t n" "t c";column-gap:11px;align-items:center;text-align:left;font:inherit;color:inherit;cursor:pointer;background:#fcfdff;border:1px solid var(--br);border-radius:12px;padding:10px;transition:transform .15s,border-color .15s,box-shadow .15s}
+button.wo-type:hover{transform:translateY(-2px);border-color:var(--p);box-shadow:0 12px 26px -18px rgba(3,38,90,.4)}
+button.wo-type:focus-visible{outline:3px solid var(--p);outline-offset:2px}
+.wo-thumb{grid-area:t;width:44px;height:44px;border-radius:10px;overflow:hidden;background:#eaf3ff;display:grid;place-items:center}
+.wo-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.wo-thumb i{font-style:normal;color:#fff;background:var(--p);border-radius:50%;width:24px;height:24px;display:grid;place-items:center;font-size:12px;font-weight:800}
+.wo-name{grid-area:n;font-weight:700;font-size:13px;color:var(--d);line-height:1.25}
+.wo-count{grid-area:c;font-size:11px;color:var(--mut)}
+.wo-modal{width:min(1040px,100%);overflow:auto}
+.wo-photos{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px;margin-top:16px;overflow:auto}
+button.wo-ph{padding:0;border:1px solid var(--br);border-radius:12px;overflow:hidden;background:#f2f7ff;cursor:pointer;font:inherit;text-align:left;display:flex;flex-direction:column}
+button.wo-ph img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;transition:transform .25s}
+button.wo-ph:hover img{transform:scale(1.04)}
+button.wo-ph:focus-visible{outline:3px solid var(--p);outline-offset:2px}
+button.wo-ph span{padding:8px 10px;font-size:12px;color:var(--mut)}
+.wo-lb{position:fixed;inset:0;z-index:120;background:rgba(2,12,28,.92);display:grid;place-items:center;padding:20px}
+.wo-lb figure{margin:0;max-width:min(1100px,92vw);text-align:center}
+.wo-lb img{max-width:100%;max-height:80vh;border-radius:10px;display:block;margin:auto}
+.wo-lb figcaption{color:#cfe0f7;font-size:13px;margin-top:10px}
+.wo-lbx,.wo-nav{position:absolute;border:0;background:rgba(255,255,255,.14);color:#fff;cursor:pointer;border-radius:50%;width:44px;height:44px;font-size:22px;line-height:1}
+.wo-lbx{top:16px;right:16px;font-size:16px}.wo-nav{top:50%;transform:translateY(-50%);font-size:30px}.wo-nav.l{left:14px}.wo-nav.r{right:14px}
+.wo-lbx:hover,.wo-nav:hover{background:rgba(255,255,255,.26)}
+@media(max-width:520px){.wo-grid{gap:8px}button.wo-type{padding:9px}.wo-photos{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.wo-nav{width:38px;height:38px}}

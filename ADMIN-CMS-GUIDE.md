@@ -21,7 +21,16 @@ After changing environment variables, redeploy the project. Keep these values ou
 4. Save to publish. The server validates content against the site's JSON structure.
 5. Use Version history to load one of the last 10 saved versions into the editor. Review it, then click Save to publish it.
 6. Use Restore JSON to load a previously downloaded backup into the editor. Review it before saving.
-7. Uploaded images are public website assets. Do not upload private documents, customer property photos, IDs or confidential client files.
+7. Uploaded images are public website assets. Do not upload private documents, IDs or confidential client files. Work Order photos are shown publicly: before uploading, make sure addresses, house numbers, faces and licence plates are not visible and that your client agreements allow publishing the photos.
+
+## Work Orders (hero side card)
+
+- Open Admin → **Work Orders**. Each entry under `types` is one work type (Grass Cut, Winterization, Re-secure, Snow Remove, Junk Remove, Lawn Remove by default).
+- **Add a type:** `+ Add item`, then fill in the name (and an optional short description). **Remove a type:** `Remove` on that entry.
+- **Add photos:** inside a type, use *Add photos* (several can be selected at once; large phone photos are resized automatically). Captions are optional; use ◀ ▶ to reorder.
+- **Delete a photo:** press `Delete` on the photo, then **Save all changes**. On save the image is deleted from Vercel Blob storage and removed from the saved content and the saved version history, so it no longer exists anywhere. Photos removed before saving (never published) are deleted immediately.
+- Because deleted photos are scrubbed from version history, restoring an older version will not bring deleted photos back.
+- Use the `show` checkbox to hide the whole card. The old hero side card (`hero.panel`) is retired; existing stored values are dropped automatically on the next save.
 
 ## Data notes
 
