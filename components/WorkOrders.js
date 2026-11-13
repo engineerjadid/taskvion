@@ -62,7 +62,7 @@ export default function WorkOrders({ tag, title, hint, footerLeft, footerRight, 
               </span>
               <span className="wo-info">
                 <span className="wo-name">{t.name}</span>
-                <span className={'wo-go' + (t.photos.length ? '' : ' soon')}>{t.photos.length ? 'View photos →' : 'Photos coming soon'}</span>
+                <span className={'wo-go' + (t.photos.length ? '' : ' soon')}>{t.photos.length ? t.photos.length + (t.photos.length === 1 ? ' photo' : ' photos') + ' →' : 'Coming soon'}</span>
               </span>
             </button>
           ))}
